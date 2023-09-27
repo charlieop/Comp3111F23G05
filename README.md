@@ -11,14 +11,14 @@ The GUI is build using <ins> not yet decided </ins>. (Swing/ JavaFX/ HTML+CSS/ .
 ## Work Distribution
 ![CHAN-A+D; LAM-C+D; YIP-B+D;](./work-distribution.jpg "Work Distribution")
 
-CHAN, Shu Pui:
+CHAN, Shu Pui (charlieop):
 - Function: A + D
 - UI
 
-LAM, Sum Ying:
+LAM, Sum Ying (summyyyy):
 - Function: C + D
 
-Yip, Sau Lai:
+Yip, Sau Lai (slyipae1):
 - Function: B + D
 
 ## Useful Links
