@@ -1,12 +1,13 @@
-package com.example.comp3111f23g05;
+package com.example.comp3111f23g05.Map;
 
-public enum Vertex {
+public enum BlockType {
     BARRIER,
     CLEAR,
     ENTRY,
-    EXIT;
+    EXIT,
+    BOUNDARY;
     public boolean canArrive() {
-        return !(this == BARRIER);
+        return !(this == BARRIER || this == BOUNDARY);
     }
     public boolean isEntry() {
         return this == ENTRY;
@@ -14,4 +15,5 @@ public enum Vertex {
     public boolean isExit() {
         return this == EXIT;
     }
+    public boolean isBoundary() {return this == BOUNDARY; }
 }

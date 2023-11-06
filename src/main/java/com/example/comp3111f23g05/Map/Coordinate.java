@@ -1,7 +1,7 @@
-package com.example.comp3111f23g05;
+package com.example.comp3111f23g05.Map;
 
 public class Coordinate {
-    static final int MAX_X = Map.MAP_SIZE;
+    static final int MAX_X = Map.MAP_SIZE - 1;
     static final int MIN_X = 0;
     static final int MAX_Y = MAX_X;
     static final int MIN_Y = MIN_X;
@@ -12,7 +12,7 @@ public class Coordinate {
         x = MIN_X;
         y = MIN_Y;
     }
-    Coordinate(int x, int y){
+    public Coordinate(int x, int y){
         if (!checkX(x) || !checkY(y)) {
             throw new RuntimeException("The value you created is now allowed!");
         }
