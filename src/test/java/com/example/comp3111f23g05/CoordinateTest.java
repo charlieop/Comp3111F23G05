@@ -1,5 +1,6 @@
 package com.example.comp3111f23g05;
 
+import com.example.comp3111f23g05.Map.Coordinate;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
