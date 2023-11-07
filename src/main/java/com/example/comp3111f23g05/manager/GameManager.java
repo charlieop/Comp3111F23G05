@@ -17,10 +17,10 @@ public class GameManager {
     public Coordinate[] CalculateShortestPath (Map map, Coordinate start, Coordinate end){
         //array to mark a place have been reached
         int[][] RecordMap = new int[Map.MAP_SIZE][Map.MAP_SIZE];
-        for (int[] ints : RecordMap) Arrays.fill(ints, 0);
-        return CalculateShortestPath(map, start, end, RecordMap);
+        for (int[] ints : RecordMap) Arrays.fill(ints, -1);
+        return CalculateShortestPath(map, start, end, RecordMap, 0);
     }
-    private Coordinate[] CalculateShortestPath (Map map, Coordinate start, Coordinate end, int[][] RecordMap){
+    private Coordinate[] CalculateShortestPath (Map map, Coordinate start, Coordinate end, int[][] RecordMap, int step){
         Coordinate[] path = new Coordinate[0];
         Block[][] mapData = map.getMap();
         int startRow = start.getY();
@@ -31,8 +31,8 @@ public class GameManager {
         // if visited
         // 0 for un-visited
         // 1 for visited
-        if(RecordMap[startRow][startCol] == 0)
-            RecordMap[startRow][startCol] = 1;
+        if(RecordMap[startRow][startCol] == -1 || step < RecordMap[startRow][startCol])
+            RecordMap[startRow][startCol] = step;
         else
             return new Coordinate[0];
 
@@ -54,16 +54,15 @@ public class GameManager {
         int minLen = 1000000;
         int[] index = {-1,1};
         for (int j = 0; j < index.length; j++){
-            int row = startRow;
             int col = startCol + index[j];
             //System.out.println(row +" " + col);
             if ( !Coordinate.checkX(col) ){
                 continue;
             }
-            Block cur = mapData[row][col];
+            Block cur = mapData[startRow][col];
             if(!cur.reachable())
                 continue;
-            Coordinate[] p = CalculateShortestPath(map, new Coordinate(col,row), end, RecordMap);
+            Coordinate[] p = CalculateShortestPath(map, new Coordinate(col, startRow), end, RecordMap, step+1);
             int l = p.length;
             if (l != 0 && l < minLen){
                 minLen = l;
@@ -73,15 +72,14 @@ public class GameManager {
 
         for (int i = 0; i < index.length; i++){
             int row = startRow + index[i];
-            int col = startCol;
             //System.out.println(row +" " + col);
-            if (row < 0 || row >= Map.MAP_SIZE || col < 0 || col >= Map.MAP_SIZE){
+            if (!Coordinate.checkY(row)){
                 continue;
             }
-            Block cur = mapData[row][col];
+            Block cur = mapData[row][startCol];
             if(!cur.reachable())
                 continue;
-            Coordinate[] p = CalculateShortestPath(map, new Coordinate(col,row), end, RecordMap);
+            Coordinate[] p = CalculateShortestPath(map, new Coordinate(startCol,row), end, RecordMap, step+1);
             int l = p.length;
             if (l != 0 && l < minLen){
                 minLen = l;
