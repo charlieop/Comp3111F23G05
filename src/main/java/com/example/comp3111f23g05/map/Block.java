@@ -24,7 +24,7 @@ public class Block extends StackPane {
         changeVisual();
     }
     private void changeVisual() {
-        getChildren().removeAll();
+        getChildren().clear();
         getChildren().add(base);
         switch (type) {
             case BARRIER:
