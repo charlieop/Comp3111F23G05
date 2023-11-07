@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/index%20page.jpg" />
+            <Image url="@../images/indexPage.jpg" />
          </image>
       </ImageView>
       <Button fx:id="startGame" layoutX="601.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#mouseClickedStartGame" onMouseEntered="#mouseEnteredStartGame" onMouseExited="#mouseExitedStartGame" prefHeight="40.0" prefWidth="250.0" text="Game Start" textAlignment="CENTER">
