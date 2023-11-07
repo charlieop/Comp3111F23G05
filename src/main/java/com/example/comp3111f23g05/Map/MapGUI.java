@@ -11,9 +11,9 @@ public class MapGUI extends StackPane {
         this.map = map;
         visualization = new GridPane();
         Block[][] mapData = map.getMap();
-        for (int i=0; i<30; i++) {
-            for (int j=0; j<30; j++) {
-                visualization.add(mapData[i][j], i, j);
+        for (int row=0; row< mapData.length; row++) {
+            for (int col=0; col<mapData[0].length; col++) {
+                visualization.add(mapData[row][col], col, row);
             }
         }
         getChildren().add(visualization);
@@ -22,9 +22,9 @@ public class MapGUI extends StackPane {
         this.map = map;
         visualization = new GridPane();
         Block[][] mapData = map.getMap();
-        for (int i=0; i<30; i++) {
-            for (int j=0; j<30; j++) {
-                visualization.add(mapData[i][j], i, j);
+        for (int row=0; row< mapData.length; row++) {
+            for (int col=0; col<mapData[0].length; col++) {
+                visualization.add(mapData[row][col], col, row);
             }
         }
         for (Coordinate pos: path) {

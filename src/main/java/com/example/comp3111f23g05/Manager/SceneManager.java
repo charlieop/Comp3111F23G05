@@ -26,11 +26,11 @@ public class SceneManager {
         AnchorPane root = new AnchorPane();
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setTitle("Tom & Jerry Maze Game - G05");
-//        stage.setResizable(false);
+        stage.setResizable(false);
         stage.setScene(scene);
         this.stage = stage;
-        stage.setWidth(WIDTH);
-        stage.setHeight(HEIGHT);
+        stage.setMinHeight(HEIGHT);
+        stage.setMinWidth(WIDTH);
         toIndex();
         stage.show();
     }
