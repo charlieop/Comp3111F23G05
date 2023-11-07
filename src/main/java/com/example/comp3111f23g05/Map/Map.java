@@ -41,11 +41,11 @@ public class Map {
     }
     private void setBlock(String type, int row, int col){
         Block newBlock;
-        if (type.strip().equals("0")) {
-            newBlock = new Block(new Coordinate(row, col), BlockType.BARRIER);
+        if (type.strip().equals("1")) {
+            newBlock = new Block(BlockType.BARRIER);
         }
         else {
-            newBlock = new Block(new Coordinate(row, col), BlockType.CLEAR);
+            newBlock = new Block(BlockType.CLEAR);
         }
         mapData[row][col] = newBlock;
     }

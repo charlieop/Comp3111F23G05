@@ -6,12 +6,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Block extends StackPane {
-    private final Coordinate pos;
     private BlockType type;
     private Rectangle visual = new Rectangle(SceneManager.BLOCK_SIZE, SceneManager.BLOCK_SIZE);
 
-    public Block(Coordinate pos, BlockType type) {
-        this.pos = pos;
+    public Block(BlockType type) {
         this.type = type;
         changeVisual();
         getChildren().add(visual);
