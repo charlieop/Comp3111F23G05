@@ -12,27 +12,25 @@ public class GameManager {
     public static GameManager getInstance() {
         return instance;
     }
-
-
-
+    
     // return enpty array if invalid or no path found
     public Coordinate[] CalculateShortestPath (Map map, Coordinate start, Coordinate end){
         //array to mark a place have been reached
-        int[][] RecordMap = new int[30][30];
+        int[][] RecordMap = new int[Map.MAP_SIZE][Map.MAP_SIZE];
         for (int[] ints : RecordMap) Arrays.fill(ints, 0);
-        return CalculateShortestPath(map, start,end,RecordMap);
+        return CalculateShortestPath(map, start, end, RecordMap);
     }
     private Coordinate[] CalculateShortestPath (Map map, Coordinate start, Coordinate end, int[][] RecordMap){
         Coordinate[] path = new Coordinate[0];
-
         Block[][] mapData = map.getMap();
-        //System.out.println(mapData.length + " " + mapData[0].length);
         int startRow = start.getY();
         int startCol = start.getX();
         int endRow = end.getY();
         int endCol = end.getX();
 
-        // if have been reached
+        // if visited
+        // 0 for un-visited
+        // 1 for visited
         if(RecordMap[startRow][startCol] == 0)
             RecordMap[startRow][startCol] = 1;
         else
@@ -40,7 +38,7 @@ public class GameManager {
 
         //check if start and end are valid
         if(!mapData[startRow][startCol].reachable() || !mapData[endRow][endCol].reachable()){
-            //System.out.println("invalid start and end");
+            // System.out.println("invalid start and end");
             return new Coordinate[0];
         }
 
@@ -59,7 +57,7 @@ public class GameManager {
             int row = startRow;
             int col = startCol + index[j];
             //System.out.println(row +" " + col);
-            if (row < 0 || row >= Map.MAP_SIZE || col < 0 || col >= Map.MAP_SIZE){
+            if ( !Coordinate.checkX(col) ){
                 continue;
             }
             Block cur = mapData[row][col];
