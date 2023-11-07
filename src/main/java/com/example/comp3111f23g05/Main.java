@@ -1,6 +1,6 @@
 package com.example.comp3111f23g05;
 
-import com.example.comp3111f23g05.Manager.SceneManager;
+import com.example.comp3111f23g05.manager.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

@@ -1,6 +1,6 @@
-package com.example.comp3111f23g05.Map;
+package com.example.comp3111f23g05.map;
 
-import com.example.comp3111f23g05.Manager.SceneManager;
+import com.example.comp3111f23g05.manager.SceneManager;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -29,7 +29,7 @@ public class Block extends StackPane {
                 visual.setFill(Color.DARKGRAY);
                 break;
             case CLEAR:
-                visual.setFill(Color.LIGHTGRAY);
+                visual.setFill(Color.TRANSPARENT);
                 break;
             case ENTRY:
                 visual.setFill(Color.WHITE);

@@ -1,4 +1,4 @@
-package com.example.comp3111f23g05.Scene;
+package com.example.comp3111f23g05.scene;
 
 import javafx.scene.Parent;
 import javafx.stage.Stage;
