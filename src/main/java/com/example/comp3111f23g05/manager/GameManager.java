@@ -1,8 +1,8 @@
-package com.example.comp3111f23g05.Manager;
+package com.example.comp3111f23g05.manager;
 
-import com.example.comp3111f23g05.Map.Block;
-import com.example.comp3111f23g05.Map.Coordinate;
-import com.example.comp3111f23g05.Map.Map;
+import com.example.comp3111f23g05.map.Block;
+import com.example.comp3111f23g05.map.Coordinate;
+import com.example.comp3111f23g05.map.Map;
 
 import java.util.Arrays;
 

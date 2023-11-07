@@ -1,4 +1,4 @@
-package com.example.comp3111f23g05.Map;
+package com.example.comp3111f23g05.map;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
