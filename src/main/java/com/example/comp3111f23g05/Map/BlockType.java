@@ -5,7 +5,8 @@ public enum BlockType {
     CLEAR,
     ENTRY,
     EXIT,
-    BOUNDARY;
+    BOUNDARY,
+    HIGHLIGHTED;
     public boolean canArrive() {
         return !(this == BARRIER || this == BOUNDARY);
     }
