@@ -28,7 +28,7 @@ public class MapGUI extends StackPane {
             }
         }
         for (Coordinate pos: path) {
-            mapData[pos.getX()][pos.getY()].setType(BlockType.HIGHLIGHTED);
+            mapData[pos.getY()][pos.getX()].setType(BlockType.HIGHLIGHTED);
         }
         getChildren().add(visualization);
     }
