@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comp3111f23g05.controller.indexController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/index%20page.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="startGame" layoutX="601.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#mouseClickedStartGame" onMouseEntered="#mouseEnteredStartGame" onMouseExited="#mouseExitedStartGame" prefHeight="40.0" prefWidth="250.0" text="Game Start" textAlignment="CENTER">
+         <font>
+            <Font name="Wawati SC Regular" size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="mapCustomization" layoutX="601.0" layoutY="353.0" mnemonicParsing="false" onMouseClicked="#mouseClickedMapCustomization" onMouseEntered="#mouseEnteredMapCustomization" onMouseExited="#mouseExitedMapCustomization" prefHeight="40.0" prefWidth="250.0" text="Map Customization" textAlignment="CENTER">
+         <font>
+            <Font name="Wawati SC Regular" size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="shortestPath" layoutX="601.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#mouseClickedShortestPath" onMouseEntered="#mouseEnteredShortestPath" onMouseExited="#mouseExitedShortestPath" prefHeight="40.0" prefWidth="250.0" text="Shortest Path Generation" textAlignment="CENTER">
+         <font>
+            <Font name="Wawati SC Regular" size="19.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
