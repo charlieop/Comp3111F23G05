@@ -18,8 +18,6 @@ public class Main extends Application {
     public void stop() throws Exception {
         super.stop();
     }
-
-
     public static void main(String[] args) {
         launch(args);
     }
