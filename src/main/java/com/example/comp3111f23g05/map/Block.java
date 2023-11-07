@@ -4,15 +4,15 @@ import com.example.comp3111f23g05.manager.SceneManager;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class Block extends StackPane {
     private BlockType type;
-    private Rectangle visual = new Rectangle(SceneManager.BLOCK_SIZE, SceneManager.BLOCK_SIZE);
+    private final Rectangle base = new Rectangle(SceneManager.BLOCK_SIZE, SceneManager.BLOCK_SIZE);
 
     public Block(BlockType type) {
         this.type = type;
         changeVisual();
-        getChildren().add(visual);
     }
 
     public BlockType getType() {
@@ -24,24 +24,27 @@ public class Block extends StackPane {
         changeVisual();
     }
     private void changeVisual() {
+        getChildren().removeAll();
+        getChildren().add(base);
         switch (type) {
             case BARRIER:
-                visual.setFill(Color.DARKGRAY);
+                base.setFill(Color.DARKGRAY);
+                getChildren().add(new Text("X"));
                 break;
             case CLEAR:
-                visual.setFill(Color.TRANSPARENT);
+                base.setFill(Color.TRANSPARENT);
                 break;
             case ENTRY:
-                visual.setFill(Color.WHITE);
+                base.setFill(Color.WHITE);
                 break;
             case EXIT:
-                visual.setFill(Color.GREEN);
+                base.setFill(Color.GREEN);
                 break;
             case BOUNDARY:
-                visual.setFill(Color.BLACK);
+                base.setFill(Color.BLACK);
                 break;
             case HIGHLIGHTED:
-                visual.setFill(Color.LIGHTGREEN);
+                base.setFill(Color.LIGHTGREEN);
                 break;
         }
     }
