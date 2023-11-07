@@ -17,16 +17,16 @@ public class GameManager {
     public Coordinate[] CalculateShortestPath (Map map, Coordinate start, Coordinate end){
         //array to mark a place have been reached
         int[][] RecordMap = new int[Map.MAP_SIZE][Map.MAP_SIZE];
-        for (int[] ints : RecordMap) Arrays.fill(ints, 0);
-        return CalculateShortestPath(map, start, end, RecordMap);
+        for (int[] ints : RecordMap) Arrays.fill(ints, -1);
+        return CalculateShortestPath(map, start, end, RecordMap, 0);
     }
-    private Coordinate[] CalculateShortestPath (Map map, Coordinate start, Coordinate end, int[][] RecordMap){
+    private Coordinate[] CalculateShortestPath (Map map, Coordinate start, Coordinate end, int[][] RecordMap, int step){
         Coordinate[] path = new Coordinate[0];
         Block[][] mapData = map.getMap();
 
         // if visited -0 for un-visited -1 for visited
-        if(RecordMap[start.y][start.x] == 0)
-            RecordMap[start.y][start.x] = 1;
+        if(RecordMap[start.y][start.x] == -1 || step < RecordMap[start.y][start.x])
+            RecordMap[start.y][start.x] = step;
         else
             return new Coordinate[0];
 
@@ -53,7 +53,7 @@ public class GameManager {
             Block cur = mapData[pos.y][pos.x];
             if (!cur.reachable())
                 continue;
-            Coordinate[] p = CalculateShortestPath(map, new Coordinate(pos.x, pos.y), end, RecordMap);
+            Coordinate[] p = CalculateShortestPath(map, new Coordinate(pos.x, pos.y), end, RecordMap, step+1);
             int l = p.length;
             if (l != 0 && l < minLen) {
                 minLen = l;
