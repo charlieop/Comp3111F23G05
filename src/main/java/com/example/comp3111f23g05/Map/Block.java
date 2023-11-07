@@ -45,4 +45,8 @@ public class Block extends StackPane {
                 break;
         }
     }
+
+    public boolean reachable(){
+        return this.type.canArrive();
+    }
 }
