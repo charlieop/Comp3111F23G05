@@ -1,4 +1,4 @@
-package com.example.comp3111f23g05.Manager;
+package com.example.comp3111f23g05.manager;
 
 public class GameManager {
     private static final GameManager instance = new GameManager();

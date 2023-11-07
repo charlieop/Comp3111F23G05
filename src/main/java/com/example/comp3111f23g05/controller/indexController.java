@@ -1,6 +1,6 @@
 package com.example.comp3111f23g05.controller;
 
-import com.example.comp3111f23g05.Manager.SceneManager;
+import com.example.comp3111f23g05.manager.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -29,7 +29,7 @@ public class indexController {
 
     @FXML
     void mouseClickedStartGame(MouseEvent event) {
-        SceneManager.getInstance().toIndex();
+        SceneManager.getInstance().toGame();
 
     }
 

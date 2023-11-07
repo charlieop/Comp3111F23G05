@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comp3111f23g05.controller.gameAreaController">
+   <children>
+      <StackPane alignment="TOP_LEFT" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gameAreaBackground.jpg" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="returnHomeButton" mnemonicParsing="false" onAction="#returnHomeButtonPressed" prefHeight="30.0" prefWidth="100.0" text="Home" textAlignment="CENTER">
+                           <font>
+                              <Font name="Wawati SC Regular" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="functionalButton" mnemonicParsing="false" onAction="#functionalButtonPressed" prefHeight="30.0" prefWidth="100.0" text="null" textAlignment="CENTER">
+                           <font>
+                              <Font name="Wawati SC Regular" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <StackPane fx:id="mapArea" prefHeight="600.0" prefWidth="600.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </StackPane>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                     <children>
+                        <Text fx:id="infoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font name="Wawati SC Regular" size="26.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </HBox>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

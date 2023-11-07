@@ -1,4 +1,4 @@
-package com.example.comp3111f23g05.Map;
+package com.example.comp3111f23g05.map;
 
 public class Coordinate {
     static final int MAX_X = Map.MAP_SIZE - 1;
