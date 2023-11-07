@@ -15,6 +15,7 @@ public class Coordinate {
     public final int y;
     public Coordinate(int x, int y){
         if (!checkX(x) || !checkY(y)) {
+            System.out.println(x + " " + y);
             throw new RuntimeException("The value you created is now allowed!");
         }
         this.x = x;
@@ -25,5 +26,23 @@ public class Coordinate {
     }
     public int calDistWith(Coordinate other) {
         return Math.abs(this.x - other.x) + Math.abs(this.y - other.y);
+    }
+    public Coordinate[] surroundings() {
+        Coordinate[] neighbors = new Coordinate[4];
+        int numOfNeighbors = 0;
+        int[] index = {-1, 1};
+        for (int i: index) {
+            if (checkX(x+i)){
+                neighbors[numOfNeighbors] = new Coordinate(x+i, y);
+                numOfNeighbors++;
+            }
+            if (checkY(y+i)){
+                neighbors[numOfNeighbors] = new Coordinate(x, y+i);
+                numOfNeighbors++;
+            }
+        }
+        Coordinate[] surround = new Coordinate[numOfNeighbors];
+        System.arraycopy(neighbors, 0, surround, 0, numOfNeighbors);
+        return surround;
     }
 }

@@ -46,15 +46,14 @@ public class GameManager {
 
         // find min subpath
         int minLen = 99999;
-        int[] index = {-1,1};
-        for (int i : index) {
-            if (!Coordinate.checkX(start.x+i)) {
+        for (Coordinate pos : start.surroundings()) {
+            if (!Coordinate.checkX(pos.x)) {
                 continue;
             }
-            Block cur = mapData[start.y][start.x+i];
+            Block cur = mapData[pos.y][pos.x];
             if (!cur.reachable())
                 continue;
-            Coordinate[] p = CalculateShortestPath(map, new Coordinate(start.x+i, start.y), end, RecordMap);
+            Coordinate[] p = CalculateShortestPath(map, new Coordinate(pos.x, pos.y), end, RecordMap);
             int l = p.length;
             if (l != 0 && l < minLen) {
                 minLen = l;
@@ -62,20 +61,6 @@ public class GameManager {
             }
         }
 
-        for (int i : index) {
-            if (!Coordinate.checkY(start.y+i)) {
-                continue;
-            }
-            Block cur = mapData[start.y+i][start.x];
-            if (!cur.reachable())
-                continue;
-            Coordinate[] p = CalculateShortestPath(map, new Coordinate(start.x, start.y+i), end, RecordMap);
-            int l = p.length;
-            if (l != 0 && l < minLen) {
-                minLen = l;
-                path = p;
-            }
-        }
         // no subpath reaches end
         if(path.length == 0){
             return new Coordinate[0];
