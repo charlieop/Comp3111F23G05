@@ -5,7 +5,7 @@ import javafx.scene.layout.StackPane;
 
 public class MapGUI extends StackPane {
     private final Map map;
-    private GridPane visualization;
+    private final GridPane visualization;
 
     public MapGUI(Map map) {
         this.map = map;
@@ -28,7 +28,7 @@ public class MapGUI extends StackPane {
             }
         }
         for (Coordinate pos: path) {
-            mapData[pos.getY()][pos.getX()].setType(BlockType.HIGHLIGHTED);
+            mapData[pos.y][pos.x].setType(BlockType.HIGHLIGHTED);
         }
         getChildren().add(visualization);
     }

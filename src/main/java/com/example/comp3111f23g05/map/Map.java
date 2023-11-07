@@ -18,14 +18,13 @@ public class Map {
             System.out.println("can not find file named: " + fileName);
             return false;
         }
-        BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(res.openStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(res.openStream()));
             String row;
             int rowNum = 0;
             while ((row = reader.readLine()) != null)  //Reads a line of text
             {
-                String[] col = row.split(",");//utilized to split the string
+                String[] col = row.split(","); //utilized to split the string
                 for (int colNum=0; colNum<col.length; colNum++) {
                     setBlock(col[colNum], rowNum, colNum);
                 }
