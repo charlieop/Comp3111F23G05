@@ -14,7 +14,7 @@ class pathFinderTest {
 
         System.out.println(path1.length);
         for(int i = 0; i < path1.length; i++){
-            System.out.println(path1[i].getX() +" " + path1[i].getY());
+            System.out.println(path1[i].x +" " + path1[i].y);
         }
 
 
@@ -24,7 +24,7 @@ class pathFinderTest {
         Coordinate[] path2 = GameManager.getInstance().CalculateShortestPath(map,new Coordinate(0,12), new Coordinate(4,14));
         System.out.println(path2.length);
         for(int i = 0; i < path2.length; i++){
-            System.out.println(path2[i].getX() +" " + path2[i].getY());
+            System.out.println(path2[i].x +" " + path2[i].y);
         }
     }
     @Test
@@ -32,7 +32,7 @@ class pathFinderTest {
         Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map,new Coordinate(0,12), new Coordinate(29,1));
         System.out.println(path.length);
         for(int i = 0; i < path.length; i++){
-            System.out.println(path[i].getX() +" " + path[i].getY());
+            System.out.println(path[i].x +" " + path[i].y);
         }
     }
 }

@@ -32,7 +32,6 @@ public class gameAreaController {
 
     @FXML
     void functionalButtonPressed(ActionEvent event) {
-
     }
 
     @FXML
