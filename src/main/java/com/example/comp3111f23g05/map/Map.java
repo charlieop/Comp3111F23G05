@@ -8,6 +8,8 @@ import java.net.URL;
 public class Map {
     public static final int MAP_SIZE = 30;
     private final Block[][] mapData;
+    private Coordinate entryPos;
+    private Coordinate exitPos;
     public Map() {
         mapData = new Block[30][30];
         loadMap("MazeMap.csv");
@@ -40,14 +42,33 @@ public class Map {
     }
     private void setBlock(String type, int row, int col){
         Block newBlock;
-        if (type.strip().equals("1")) {
-            newBlock = new Block(BlockType.BARRIER);
-        }
-        else {
-            newBlock = new Block(BlockType.CLEAR);
-        }
+         switch (type.strip()) {
+             case "1":
+                 newBlock = new Block(BlockType.BARRIER);
+                 break;
+             case "2":
+                 newBlock = new Block(BlockType.BOUNDARY);
+                 break;
+             case "3":
+                 newBlock = new Block(BlockType.ENTRY);
+                 entryPos = new Coordinate(col, row);
+                 break;
+             case "4":
+                 newBlock = new Block(BlockType.EXIT);
+                 exitPos = new Coordinate(col, row);
+                 break;
+             default:
+                 newBlock = new Block(BlockType.CLEAR);
+
+         }
         mapData[row][col] = newBlock;
     }
 
+    public Coordinate getEntryPos() {
+        return entryPos;
+    }
+    public Coordinate getExitPos() {
+        return exitPos;
+    }
 }
 

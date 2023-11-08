@@ -7,14 +7,4 @@ public enum BlockType {
     EXIT,
     BOUNDARY,
     HIGHLIGHTED;
-    public boolean canArrive() {
-        return !(this == BARRIER || this == BOUNDARY);
-    }
-    public boolean isEntry() {
-        return this == ENTRY;
-    }
-    public boolean isExit() {
-        return this == EXIT;
-    }
-    public boolean isBoundary() {return this == BOUNDARY; }
 }

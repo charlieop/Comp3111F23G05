@@ -44,12 +44,12 @@ public class Block extends StackPane {
                 base.setFill(Color.BLACK);
                 break;
             case HIGHLIGHTED:
-                base.setFill(Color.LIGHTGREEN);
+                getChildren().add(new Text("O"));
                 break;
         }
     }
 
     public boolean reachable(){
-        return this.type.canArrive();
+        return !(type == BlockType.BARRIER || type == BlockType.BOUNDARY);
     }
 }

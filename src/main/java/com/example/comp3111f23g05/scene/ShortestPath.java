@@ -2,7 +2,6 @@ package com.example.comp3111f23g05.scene;
 
 import com.example.comp3111f23g05.controller.gameAreaController;
 import com.example.comp3111f23g05.manager.GameManager;
-import com.example.comp3111f23g05.manager.SceneManager;
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
 import com.example.comp3111f23g05.map.MapGUI;
@@ -18,10 +17,8 @@ import java.io.IOException;
 public class ShortestPath {
     public static void init(Stage stage) {
         Parent root = null;
-        Button btn = new Button("Home");
-        btn.setOnMouseClicked(mouseEvent -> {SceneManager.getInstance().toIndex();});
         Map map = new Map();
-        Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map,new Coordinate(0,12), new Coordinate(29,1));
+        Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.getEntryPos(), map.getExitPos());
         MapGUI gui = new MapGUI(map, path);
         FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource("/fxml/gameArea.fxml"));
         try {
