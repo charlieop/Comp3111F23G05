@@ -1,24 +1,22 @@
 package com.example.comp3111f23g05.map;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Map {
     public static final int MAP_SIZE = 30;
     private final Block[][] mapData;
-    private Coordinate entryPos;
-    private Coordinate exitPos;
+    public Coordinate entryPos;
+    public Coordinate exitPos;
     public Map() {
         mapData = new Block[30][30];
         loadMap("MazeMap.csv");
     }
-    public boolean loadMap(String fileName) {
+    public void loadMap(String fileName) {
         URL res = getClass().getClassLoader().getResource(fileName);
         if (res == null) {
             System.out.println("can not find file named: " + fileName);
-            return false;
         }
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(res.openStream()));
@@ -32,7 +30,6 @@ public class Map {
                 }
                 rowNum++;
             }
-            return true;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -64,11 +61,32 @@ public class Map {
         mapData[row][col] = newBlock;
     }
 
-    public Coordinate getEntryPos() {
-        return entryPos;
-    }
-    public Coordinate getExitPos() {
-        return exitPos;
+    public void saveMap(String fileName) {
+        URL res = getClass().getClassLoader().getResource(fileName);
+        if (res == null) {
+            System.out.println("can not find file named: " + fileName);
+        }
+        String path = null;
+        try {
+            path = new File(res.toURI()).getAbsolutePath();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        String str = "";
+        for (Block[] row: mapData) {
+            for (Block block: row) {
+                str += block.getType().ordinal() + ",";
+            }
+            str += "\n";
+        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            writer.write(str);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
 

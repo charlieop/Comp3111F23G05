@@ -18,7 +18,7 @@ public class ShortestPath {
     public static void init(Stage stage) {
         Parent root = null;
         Map map = new Map();
-        Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.getEntryPos(), map.getExitPos());
+        Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.entryPos, map.exitPos);
         MapGUI gui = new MapGUI(map, path);
         FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource("/fxml/gameArea.fxml"));
         try {
