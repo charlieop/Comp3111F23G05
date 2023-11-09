@@ -15,7 +15,7 @@ public class GameManager {
     
     // return empty array if invalid or no path found
     public Coordinate[] CalculateShortestPath (Map map, Coordinate start, Coordinate end){
-        //array to mark a place have been reached
+        //array to mark the min steps tp reach a position
         int[][] RecordMap = new int[Map.MAP_SIZE][Map.MAP_SIZE];
         for (int[] ints : RecordMap) Arrays.fill(ints, -1);
         return CalculateShortestPath(map, start, end, RecordMap, 0);
@@ -24,21 +24,19 @@ public class GameManager {
         Coordinate[] path = new Coordinate[0];
         Block[][] mapData = map.getMap();
 
-        // if visited -0 for un-visited -1 for visited
+        // explore this pos only when not visited or reached with smaller steps
         if(RecordMap[start.y][start.x] == -1 || step < RecordMap[start.y][start.x])
             RecordMap[start.y][start.x] = step;
         else
             return new Coordinate[0];
 
-        //check if start and end are valid
+        //check if start and end are clear blocks
         if(!mapData[start.y][start.x].reachable() || !mapData[end.y][end.x].reachable()){
-            // System.out.println("invalid start and end");
             return new Coordinate[0];
         }
 
         //reach end
         if (start.equals(end)) {
-            //System.out.println("reached the end");
             path = new Coordinate[1];
             path[0] = new Coordinate(start.x, start.y);
             return path;
@@ -47,7 +45,7 @@ public class GameManager {
         // find min subpath
         int minLen = 99999;
         for (Coordinate pos : start.surroundings()) {
-            if (!Coordinate.checkX(pos.x)) {
+            if (!Coordinate.checkX(pos.x) || !Coordinate.checkY(pos.y)) { //double check pos
                 continue;
             }
             Block cur = mapData[pos.y][pos.x];
@@ -55,7 +53,7 @@ public class GameManager {
                 continue;
             Coordinate[] p = CalculateShortestPath(map, new Coordinate(pos.x, pos.y), end, RecordMap, step+1);
             int l = p.length;
-            if (l != 0 && l < minLen) {
+            if (l != 0 && l < minLen) { //update if find shorter valid path
                 minLen = l;
                 path = p;
             }
@@ -66,6 +64,7 @@ public class GameManager {
             return new Coordinate[0];
         }
 
+        // add start pos to subpath
         Coordinate[] subpath = path;
         path = new Coordinate[subpath.length+1];
         path[0] = new Coordinate(start.x, start.y);

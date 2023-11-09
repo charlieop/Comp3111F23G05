@@ -12,9 +12,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class ShortestPath {
+    private static final int MAX_CSV_ROW = 10;
     public static void init(Stage stage) {
         Parent root = null;
         Map map = new Map();
@@ -29,7 +35,10 @@ public class ShortestPath {
         gameAreaController controller = loader.getController();
 
         Button generate = controller.getFunctionalButton();
-        generate.setText("Generate");
+        generate.setText("Generate CSV");
+        generate.setOnAction(actionEvent -> {
+            GeneratePathCSV("ShortestPathData.csv", path);
+        });
 
         Text text = controller.getInfoText();
         text.setText("Find Path");
@@ -38,6 +47,37 @@ public class ShortestPath {
         stack.getChildren().add(gui);
 
         stage.getScene().setRoot(root);
+    }
+
+    private static void GeneratePathCSV(String fileName, Coordinate[] ShortestPath){
+        URL res = ShortestPath.class.getClassLoader().getResource(fileName);
+        if (res == null) {
+            System.out.println("can not find file named: " + fileName);
+        }
+        String FilePath = null;
+        try {
+            FilePath = new File(res.toURI()).getAbsolutePath();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        String str = "";
+        String title = "Path length:  " + ShortestPath.length + "\n";
+        str += title;
+        int c = 0;
+        for (Coordinate step : ShortestPath){
+            str += " (" + step.y + "," + step.x + ") "; //(y,x) = (row, col)
+            if (++c == MAX_CSV_ROW){
+                c = 0;
+                str += "\n";
+            }
+        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FilePath));
+            writer.write(str);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
