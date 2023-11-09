@@ -29,6 +29,9 @@ public class gameAreaController {
 
     @FXML
     private Button returnHomeButton;
+    public Button getReturnHomeButton() {
+        return returnHomeButton;
+    }
 
     @FXML
     void functionalButtonPressed(ActionEvent event) {
