@@ -23,7 +23,7 @@
             <Font name="Wawati SC Regular" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="shortestPath" layoutX="601.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#mouseClickedShortestPath" onMouseEntered="#mouseEnteredShortestPath" onMouseExited="#mouseExitedShortestPath" prefHeight="40.0" prefWidth="250.0" text="See the Shortest Path" textAlignment="CENTER">
+      <Button fx:id="shortestPath" layoutX="601.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#mouseClickedShortestPath" onMouseEntered="#mouseEnteredShortestPath" onMouseExited="#mouseExitedShortestPath" prefHeight="40.0" prefWidth="250.0" text="display Shortest Path" textAlignment="CENTER">
          <font>
             <Font name="Wawati SC Regular" size="19.0" />
          </font>
