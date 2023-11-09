@@ -1,11 +1,15 @@
 package com.example.comp3111f23g05.scene;
 
 import com.example.comp3111f23g05.controller.gameAreaController;
+import com.example.comp3111f23g05.manager.GameManager;
 import com.example.comp3111f23g05.manager.SceneManager;
 import com.example.comp3111f23g05.map.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -33,10 +37,71 @@ public class Editor {
         }
         gameAreaController controller = loader.getController();
 
-        Button save = controller.getFunctionalButton();
-        save.setText("Save");
-        save.setOnAction(actionEvent -> {
-            map.saveMap("MazeMap.csv");
+        Button clearMapButton = controller.getFunctionalButton();
+        clearMapButton.setText("ClearMap");
+        clearMapButton.setOnAction(actionEvent -> {
+            Alert clearMap = new Alert(Alert.AlertType.WARNING);
+            clearMap.setTitle("About to Clear map...");
+            clearMap.setHeaderText("Do you want to clear the map?");
+            clearMap.setContentText("ALL of your progress will be LOST!");
+            clearMap.getButtonTypes().clear();
+            clearMap.getButtonTypes().add(ButtonType.CANCEL);
+            clearMap.getButtonTypes().add(ButtonType.YES);
+            clearMap.showAndWait().ifPresent(response -> {
+                if (response.getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
+                    return;
+                }
+
+                // if user agreed to clear the map
+                for (int row = 1; row < Map.MAP_SIZE-1; row++) {
+                    for (int col = 1; col < Map.MAP_SIZE-1; col++) {
+                        curMap.getMap()[row][col].setType(BlockType.CLEAR);
+                    }
+                }
+            });
+        });
+
+        Button returnHome = controller.getReturnHomeButton();
+        returnHome.setOnAction(actionEvent -> {
+            Alert saveMap = new Alert(Alert.AlertType.NONE);
+            saveMap.setTitle("About to exit Map Editor...");
+            saveMap.setHeaderText("Do you want to save the map?");
+            saveMap.setContentText("If you choose \"NO\", all of your process will be LOST!");
+            saveMap.getButtonTypes().add(ButtonType.NO);
+            saveMap.getButtonTypes().add(ButtonType.CLOSE);
+            saveMap.getButtonTypes().add(ButtonType.YES);
+            saveMap.showAndWait().ifPresent(response -> {
+                if (response.getButtonData() == ButtonBar.ButtonData.NO) {
+                    SceneManager.getInstance().toIndex();
+                    return;
+                } else if (response.getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
+                    return;
+                }
+
+                // check save map condition: at least 2 path
+                Coordinate[] path = GameManager.getInstance().CalculateShortestPath(curMap, curMap.entryPos, curMap.exitPos);
+                boolean hasMultiplePath = false;
+                Coordinate[] anotherPath;
+                for (int i = 1; i < path.length-1; i++) {
+                    curMap.getMap()[path[i].y][path[i].x].setType(BlockType.BARRIER);
+                    anotherPath = GameManager.getInstance().CalculateShortestPath(curMap, curMap.entryPos, curMap.exitPos);
+                    curMap.getMap()[path[i].y][path[i].x].setType(BlockType.CLEAR);
+                    if (anotherPath.length != 0) {
+                        hasMultiplePath = true;
+                        break;
+                    }
+                }
+                if (path.length == 0 || !hasMultiplePath){
+                    Alert warning = new Alert(Alert.AlertType.WARNING);
+                    warning.setTitle("Save map Failed");
+                    warning.setHeaderText("There must be at least 2 path from entry to exit!");
+                    warning.setContentText("Please adjust the Entry/Exit position or remove some barriers.");
+                    warning.show();
+                    return;
+                }
+                map.saveMap("MazeMap.csv");
+                SceneManager.getInstance().toIndex();
+            });
         });
 
         Text text = controller.getInfoText();
