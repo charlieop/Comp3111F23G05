@@ -4,10 +4,17 @@ import com.example.comp3111f23g05.manager.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class gameAreaController {
+
+    @FXML
+    private ImageView background;
+    public ImageView getBackground() {
+        return background;
+    }
 
     @FXML
     private Button functionalButton;

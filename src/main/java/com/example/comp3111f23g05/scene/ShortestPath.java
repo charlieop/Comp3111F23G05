@@ -8,6 +8,8 @@ import com.example.comp3111f23g05.map.MapGUI;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -45,6 +47,10 @@ public class ShortestPath {
 
         Text text = controller.getInfoText();
         text.setText("Find Path");
+
+        ImageView background = controller.getBackground();
+        Image backImage = new Image(ShortestPath.class.getResourceAsStream("/images/mapPathBackground.png"));
+        background.setImage(backImage);
 
         StackPane stack = controller.getMapArea();
         stack.getChildren().add(gui);
