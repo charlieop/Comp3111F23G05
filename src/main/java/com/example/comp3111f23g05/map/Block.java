@@ -23,6 +23,7 @@ public class Block extends StackPane {
         this.type = type;
         changeVisual();
     }
+
     private void changeVisual() {
         getChildren().clear();
         getChildren().add(base);
