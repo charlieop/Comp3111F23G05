@@ -70,11 +70,12 @@ public class ShortestPath {
             throw new RuntimeException(e);
         }
         String str = "";
-        String title = "Path length:  " + ShortestPath.length + "\n";
-        str += title;
+        String title1 = "Path length:  " + ShortestPath.length + "," + "\n";
+        String title2 = "display format: (row-col)" + "," + "\n";
+        str += title1 + title2;
         int c = 0;
         for (Coordinate step : ShortestPath){
-            str += " (" + step.y + "," + step.x + ") "; //(y,x) = (row, col)
+            str += " (" + step.y + "-" + step.x + ") " + ","; //(y,x) = (row, col)
             if (++c == MAX_CSV_ROW){
                 c = 0;
                 str += "\n";
