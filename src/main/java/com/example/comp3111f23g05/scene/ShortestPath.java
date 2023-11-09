@@ -7,7 +7,9 @@ import com.example.comp3111f23g05.map.Map;
 import com.example.comp3111f23g05.map.MapGUI;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -38,6 +40,13 @@ public class ShortestPath {
         generate.setText("Generate CSV");
         generate.setOnAction(actionEvent -> {
             GeneratePathCSV("ShortestPathData.csv", path);
+            Alert PathData = new Alert(Alert.AlertType.INFORMATION);
+            PathData.setTitle("Generate Path Data CSV");
+            PathData.setHeaderText("CSV file is successfully generated.");
+            PathData.setContentText("Please find it at: /target/classes/ShortestPathData.csv");
+            PathData.getButtonTypes().clear();
+            PathData.getButtonTypes().add(ButtonType.OK);
+            PathData.showAndWait();
         });
 
         Text text = controller.getInfoText();
