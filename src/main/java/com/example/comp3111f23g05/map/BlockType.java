@@ -1,20 +1,10 @@
 package com.example.comp3111f23g05.map;
 
 public enum BlockType {
-    BARRIER,
     CLEAR,
+    BARRIER,
+    BOUNDARY,
     ENTRY,
     EXIT,
-    BOUNDARY,
     HIGHLIGHTED;
-    public boolean canArrive() {
-        return !(this == BARRIER || this == BOUNDARY);
-    }
-    public boolean isEntry() {
-        return this == ENTRY;
-    }
-    public boolean isExit() {
-        return this == EXIT;
-    }
-    public boolean isBoundary() {return this == BOUNDARY; }
 }
