@@ -1,6 +1,7 @@
 package com.example.comp3111f23g05.scene;
 
 import com.example.comp3111f23g05.controller.gameAreaController;
+import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
 import com.example.comp3111f23g05.map.MapGUI;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ public class Game {
     public static void init(Stage stage) {
         Parent root = null;
         Map map = new Map();
-        MapGUI gui = new MapGUI(map);
+        MapGUI gui = new MapGUI(map, new Coordinate[0]);
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("/fxml/gameArea.fxml"));
         try {
             root = loader.load();
@@ -27,8 +28,7 @@ public class Game {
 
         Button pause = controller.getFunctionalButton();
         pause.setText("Pause");
-
-
+        
         Text text = controller.getInfoText();
         text.setText("Game");
 

@@ -82,28 +82,24 @@ public class ShortestPath {
         }
         String FilePath = null;
         try {
+            assert res != null;
             FilePath = new File(res.toURI()).getAbsolutePath();
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-        String str = "";
-        String title1 = "Path length:  " + ShortestPath.length + "," + "\n";
-        String title2 = "display format: (row-col)" + "," + "\n";
-        str += title1 + title2;
-        int c = 0;
-        for (Coordinate step : ShortestPath){
-            str += " (" + step.y + "-" + step.x + ") " + ","; //(y,x) = (row, col)
-            if (++c == MAX_CSV_ROW){
-                c = 0;
-                str += "\n";
+            String str = "";
+            String title1 = "Path length:  " + ShortestPath.length + "," + "\n";
+            String title2 = "display format: (row-col)" + "," + "\n";
+            str += title1 + title2;
+            int c = 0;
+            for (Coordinate step : ShortestPath){
+                str += " (" + step.y + "-" + step.x + ") " + ","; //(y,x) = (row, col)
+                if (++c == MAX_CSV_ROW){
+                    c = 0;
+                    str += "\n";
+                }
             }
-        }
-        try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(FilePath));
             writer.write(str);
             writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | URISyntaxException ignored) {
         }
     }
 

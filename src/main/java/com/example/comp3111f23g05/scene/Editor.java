@@ -31,7 +31,7 @@ public class Editor {
         Parent root = null;
         Map map = new Map();
         curMap = map;
-        MapGUI gui = new MapGUI(map);
+        MapGUI gui = new MapGUI(map, new Coordinate[0]);
         FXMLLoader loader = new FXMLLoader(Editor.class.getResource("/fxml/gameArea.fxml"));
         try {
             root = loader.load();
@@ -141,7 +141,7 @@ public class Editor {
                     warning.show();
                     return;
                 }
-                map.saveMap("MazeMap.csv");
+                map.saveMap();
                 SceneManager.getInstance().toIndex();
             });
         });
@@ -213,18 +213,17 @@ public class Editor {
             lastY = y;
             Block initBlock = map.getMap()[initY][initX];
             BlockType initType = initBlock.getType();
-
             // move entry and exit point
             if (initType == BlockType.ENTRY || initType == BlockType.EXIT) {
                 // find the closest boundary
-                int x_dist = Math.abs(x - Map.MAP_SIZE/2);
-                int y_dist = Math.abs(y - Map.MAP_SIZE/2);
+                double threshlod = ((double) Map.MAP_SIZE-1)/2;
+                double x_dist = Math.abs((double)x - threshlod);
+                double y_dist = Math.abs((double)y - threshlod);
                 if (x_dist > y_dist) {
-                    x = x < Map.MAP_SIZE/2 ? 0 : Map.MAP_SIZE-1;
+                    x = x < threshlod ? 0 : Map.MAP_SIZE-1;
                 } else {
-                    y = y < Map.MAP_SIZE/2 ? 0 : Map.MAP_SIZE-1;
+                    y = y < threshlod ? 0 : Map.MAP_SIZE-1;
                 }
-
                 // change entry exit position
                 Block newPos = map.getMap()[y][x];
                 if (newPos.getType() == BlockType.BOUNDARY) {

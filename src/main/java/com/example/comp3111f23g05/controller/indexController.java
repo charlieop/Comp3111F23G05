@@ -31,14 +31,12 @@ public class indexController {
     void mouseClickedShortestPath(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
         AudioManager.getInstance().play("/sounds/done.wav");
         SceneManager.getInstance().toShortestPath();
-
     }
 
     @FXML
     void mouseClickedStartGame(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
         AudioManager.getInstance().play("/sounds/done.wav");
         SceneManager.getInstance().toGame();
-
     }
 
     @FXML
@@ -55,17 +53,4 @@ public class indexController {
     void mouseEnteredStartGame(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
         AudioManager.getInstance().play("/sounds/button.wav");
     }
-
-    @FXML
-    void mouseExitedMapCustomization(MouseEvent event) {
-    }
-
-    @FXML
-    void mouseExitedShortestPath(MouseEvent event) {
-    }
-
-    @FXML
-    void mouseExitedStartGame(MouseEvent event) {
-    }
-
 }
