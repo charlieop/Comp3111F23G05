@@ -15,7 +15,6 @@ public class Coordinate {
     public final int y;
     public Coordinate(int x, int y){
         if (!checkX(x) || !checkY(y)) {
-            System.out.println(x + " " + y);
             throw new RuntimeException("The value you created is now allowed!");
         }
         this.x = x;
@@ -24,9 +23,7 @@ public class Coordinate {
     public boolean equals(Coordinate other) {
         return this.x == other.x && this.y == other.y;
     }
-    public int calDistWith(Coordinate other) {
-        return Math.abs(this.x - other.x) + Math.abs(this.y - other.y);
-    }
+
     public Coordinate[] surroundings() {
         Coordinate[] neighbors = new Coordinate[4];
         int numOfNeighbors = 0;

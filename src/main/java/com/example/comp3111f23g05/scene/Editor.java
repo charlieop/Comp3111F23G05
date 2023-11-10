@@ -28,7 +28,7 @@ public class Editor {
         Parent root = null;
         Map map = new Map();
         curMap = map;
-        MapGUI gui = new MapGUI(map);
+        MapGUI gui = new MapGUI(map, new Coordinate[0]);
         FXMLLoader loader = new FXMLLoader(Editor.class.getResource("/fxml/gameArea.fxml"));
         try {
             root = loader.load();
@@ -99,7 +99,7 @@ public class Editor {
                     warning.show();
                     return;
                 }
-                map.saveMap("MazeMap.csv");
+                map.saveMap();
                 SceneManager.getInstance().toIndex();
             });
         });

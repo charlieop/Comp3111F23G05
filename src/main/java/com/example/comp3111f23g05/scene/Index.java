@@ -8,15 +8,12 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Index {
-
     public static void init(Stage stage) {
         Parent root = null;
         try {
             root = FXMLLoader.load(Objects.requireNonNull(Index.class.getResource("/fxml/index.fxml")));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ignored) {
         }
         stage.getScene().setRoot(root);
     }
-
 }
