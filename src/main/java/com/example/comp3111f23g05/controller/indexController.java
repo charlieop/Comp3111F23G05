@@ -53,4 +53,13 @@ public class indexController {
     void mouseEnteredStartGame(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
         AudioManager.getInstance().play("/sounds/button.wav");
     }
+
+    public void mouseExitedStartGame(MouseEvent mouseEvent) {
+    }
+
+    public void mouseExitedMapCustomization(MouseEvent mouseEvent) {
+    }
+
+    public void mouseExitedShortestPath(MouseEvent mouseEvent) {
+    }
 }

@@ -227,6 +227,20 @@ public class Editor {
                 // change entry exit position
                 Block newPos = map.getMap()[y][x];
                 if (newPos.getType() == BlockType.BOUNDARY) {
+
+                    //sound effect
+                    try {
+                        AudioManager.getInstance().play("/sounds/block flick.wav");
+                    } catch (UnsupportedAudioFileException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (LineUnavailableException e) {
+                        throw new RuntimeException(e);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
                     newPos.setType(initType==BlockType.ENTRY ? BlockType.ENTRY : BlockType.EXIT);
                     initBlock.setType(BlockType.BOUNDARY);
                     initX = x;
