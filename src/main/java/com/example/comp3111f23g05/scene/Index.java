@@ -2,6 +2,7 @@ package com.example.comp3111f23g05.scene;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class Index {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        stage.getIcons().add(new Image(String.valueOf(Index.class.getResource("/images/icon.jpg"))));
         stage.getScene().setRoot(root);
     }
 
