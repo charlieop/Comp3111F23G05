@@ -24,13 +24,11 @@ public class indexController {
     @FXML
     void mouseClickedShortestPath(MouseEvent event) {
         SceneManager.getInstance().toShortestPath();
-
     }
 
     @FXML
     void mouseClickedStartGame(MouseEvent event) {
         SceneManager.getInstance().toGame();
-
     }
 
     @FXML
@@ -44,17 +42,4 @@ public class indexController {
     @FXML
     void mouseEnteredStartGame(MouseEvent event) {
     }
-
-    @FXML
-    void mouseExitedMapCustomization(MouseEvent event) {
-    }
-
-    @FXML
-    void mouseExitedShortestPath(MouseEvent event) {
-    }
-
-    @FXML
-    void mouseExitedStartGame(MouseEvent event) {
-    }
-
 }

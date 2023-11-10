@@ -29,7 +29,7 @@
                               <Font name="Wawati SC Regular" size="13.0" />
                            </font>
                         </Button>
-                        <Button fx:id="functionalButton" mnemonicParsing="false" onAction="#functionalButtonPressed" prefHeight="30.0" prefWidth="100.0" text="null" textAlignment="CENTER">
+                        <Button fx:id="functionalButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="null" textAlignment="CENTER">
                            <font>
                               <Font name="Wawati SC Regular" size="13.0" />
                            </font>

@@ -41,10 +41,6 @@ public class gameAreaController {
     }
 
     @FXML
-    void functionalButtonPressed(ActionEvent event) {
-    }
-
-    @FXML
     void returnHomeButtonPressed(ActionEvent event) {
         SceneManager.getInstance().toIndex();
     }
