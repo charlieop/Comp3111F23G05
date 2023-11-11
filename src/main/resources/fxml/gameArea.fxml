@@ -51,13 +51,6 @@
                      <padding>
                         <Insets top="30.0" />
                      </padding>
-                     <children>
-                        <Text fx:id="infoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                           <font>
-                              <Font name="Wawati SC Regular" size="26.0" />
-                           </font>
-                        </Text>
-                     </children>
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>

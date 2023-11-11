@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,8 +32,7 @@ public class Editor {
         FXMLLoader loader = new FXMLLoader(Editor.class.getResource("/fxml/gameArea.fxml"));
         try {
             root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ignored) {
         }
         gameAreaController controller = loader.getController();
 
@@ -113,9 +111,6 @@ public class Editor {
                 SceneManager.getInstance().toIndex();
             });
         });
-
-        Text text = controller.getInfoText();
-        text.setText("Editor");
 
         StackPane stack = controller.getMapArea();
         stack.getChildren().add(gui);

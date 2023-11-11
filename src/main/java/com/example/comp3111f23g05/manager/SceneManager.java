@@ -49,8 +49,8 @@ public class SceneManager {
         GameManager.getInstance().init(map);
         Game.init(stage, map);
     }
-    public void toGameOver(){
-        GameOver.init(stage);
+    public void toGameOver(boolean isWiner){
+        GameOver.init(stage, isWiner);
     }
 
 }
