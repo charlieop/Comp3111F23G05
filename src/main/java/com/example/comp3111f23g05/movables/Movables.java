@@ -6,7 +6,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public abstract class Movables{
-    private boolean alive = true;
     public Coordinate position;
     private Image image;
     public long lastMovedTime = 0;
@@ -18,10 +17,6 @@ public abstract class Movables{
 
     public Coordinate getCoordinates(){
         return position;
-    }
-
-    public boolean isAlive(){
-        return alive;
     }
 
     public void paint(GraphicsContext graphicsContext) {
