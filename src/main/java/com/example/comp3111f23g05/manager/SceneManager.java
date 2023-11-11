@@ -45,9 +45,7 @@ public class SceneManager {
         ShortestPath.init(stage);
     }
     public void toGame(){
-        Map map = new Map();
-        GameManager.getInstance().init(map);
-        Game.init(stage, map);
+        Game.init(stage);
     }
     public void toGameOver(boolean isWiner){
         GameOver.init(stage, isWiner);
