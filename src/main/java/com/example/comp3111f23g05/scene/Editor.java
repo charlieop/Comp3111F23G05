@@ -4,6 +4,7 @@ import com.example.comp3111f23g05.controller.gameAreaController;
 import com.example.comp3111f23g05.manager.AudioManager;
 import com.example.comp3111f23g05.manager.GameManager;
 import com.example.comp3111f23g05.manager.SceneManager;
+import com.example.comp3111f23g05.manager.Sound;
 import com.example.comp3111f23g05.map.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,7 +41,7 @@ public class Editor {
         clearMapButton.setText("ClearMap");
         clearMapButton.setOnAction(actionEvent -> {
             //sound effect
-            AudioManager.getInstance().play("/sounds/alert.wav");
+            AudioManager.getInstance().play(Sound.ALERT);
 
             Alert clearMap = new Alert(Alert.AlertType.WARNING);
             clearMap.setTitle("About to Clear map...");
@@ -66,7 +67,7 @@ public class Editor {
         Button returnHome = controller.getReturnHomeButton();
         returnHome.setOnAction(actionEvent -> {
             //sound effect
-            AudioManager.getInstance().play("/sounds/alert.wav");
+            AudioManager.getInstance().play(Sound.ALERT);
 
             Alert saveMap = new Alert(Alert.AlertType.NONE);
             saveMap.setTitle("About to exit Map Editor...");
@@ -98,7 +99,7 @@ public class Editor {
                 }
                 if (path.length == 0 || !hasMultiplePath){
                     //sound effect
-                    AudioManager.getInstance().play("/sounds/alert.wav");
+                    AudioManager.getInstance().play(Sound.ALERT);
 
                     Alert warning = new Alert(Alert.AlertType.WARNING);
                     warning.setTitle("Save map Failed");
@@ -137,7 +138,7 @@ public class Editor {
             }
 
             //sound effect
-            AudioManager.getInstance().play("/sounds/block flick.wav");
+            AudioManager.getInstance().play(Sound.BLOCK);
 
         });
 
@@ -182,7 +183,7 @@ public class Editor {
                 if (newPos.getType() == BlockType.BOUNDARY) {
 
                     //sound effect
-                    AudioManager.getInstance().play("/sounds/block flick.wav");
+                    AudioManager.getInstance().play(Sound.BLOCK);
 
                     newPos.setType(initType==BlockType.ENTRY ? BlockType.ENTRY : BlockType.EXIT);
                     initBlock.setType(BlockType.BOUNDARY);
@@ -204,7 +205,7 @@ public class Editor {
                 }
 
                 //sound effect
-                AudioManager.getInstance().play("/sounds/block flick.wav");
+                AudioManager.getInstance().play(Sound.BLOCK);
 
             }
         });
