@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,8 +29,6 @@ public class Game {
         // more scene settings
         Button pause = controller.getFunctionalButton();
         pause.setText("Pause");
-        Text text = controller.getInfoText();
-        text.setText("Game");
 
         StackPane stack = controller.getMapArea();
         stack.getChildren().add(gui);

@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 public class gameAreaController {
 
@@ -20,12 +19,6 @@ public class gameAreaController {
     private Button functionalButton;
     public Button getFunctionalButton() {
         return functionalButton;
-    }
-
-    @FXML
-    private Text infoText;
-    public Text getInfoText() {
-        return infoText;
     }
 
     @FXML
