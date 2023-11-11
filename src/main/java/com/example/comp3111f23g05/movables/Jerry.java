@@ -5,7 +5,7 @@ import javafx.scene.input.KeyCode;
 
 public class Jerry extends Movables {
 
-    public static final long MINIMUM_MOVEMENT_INTERVAL = (long) (0.3 * Math.pow(10, 9));
+    public static final long MINIMUM_MOVEMENT_INTERVAL = (long) (0.4 * Math.pow(10, 9));
 
     public Jerry(Coordinate position) {
         super(position, "/images/Jerry.gif");

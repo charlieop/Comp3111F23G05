@@ -34,7 +34,7 @@ public class GameManager {
 
     private GraphicsContext graphicsContext;
     private Map map;
-    private Refresh refresh = new Refresh();
+    private final Refresh refresh = new Refresh();
 
     private long currentTime;
 
@@ -48,34 +48,36 @@ public class GameManager {
         canvas.setWidth(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         canvas.setHeight(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         graphicsContext = canvas.getGraphicsContext2D();
-        // process the jerry move
+
         root.setOnKeyPressed(event -> {
             KeyCode keycode = event.getCode();
             if (currentTime - jerry.lastMovedTime > Jerry.MINIMUM_MOVEMENT_INTERVAL) {
-//                System.out.println(keycode);
-//                System.out.println(currentTime - jerry.lastMovedTime);
                 Coordinate nextPosition = keyCodeProcess(keycode);
-                if (nextPosition != null) {
-                    if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR) {
-                        jerry.lastMovedTime = currentTime;
-                        jerry.move(nextPosition);
-                    }
+                if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR ||map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.EXIT) {
+                    jerry.lastMovedTime = currentTime;
+                    jerry.move(nextPosition);
                 }
+
             }
         });
-
         refresh.start();
     }
 
     private Coordinate keyCodeProcess(KeyCode keycode){
-        Coordinate nextPosition = null;
+        int[] nextPosition = new int[]{0, 0};
+        int x = jerry.position.x;
+        int y =jerry.position.y;
         switch (keycode) {
-            case W -> { nextPosition = new Coordinate(jerry.position.x, jerry.position.y - 1);}
-            case S -> { nextPosition = new Coordinate(jerry.position.x, jerry.position.y + 1);}
-            case A -> { nextPosition = new Coordinate(jerry.position.x - 1, jerry.position.y);}
-            case D -> { nextPosition = new Coordinate(jerry.position.x + 1, jerry.position.y);}
+            case W -> nextPosition[1] = -1;
+            case S -> nextPosition[1] = 1;
+            case A -> nextPosition[0] = -1;
+            case D -> nextPosition[0] = 1;
         }
-        return nextPosition;
+        if (!Coordinate.checkX(x + nextPosition[0]) || !Coordinate.checkY(y+nextPosition[1])) {
+            nextPosition = new int[]{0, 0};
+        }
+
+        return new Coordinate(x + nextPosition[0], y+nextPosition[1]);
     }
 
     private class Refresh extends AnimationTimer {
@@ -84,15 +86,13 @@ public class GameManager {
             currentTime = now;
             paint();
             if (currentTime - tom.lastMovedTime > Tom.MINIMUM_MOVEMENT_INTERVAL) {
-//                System.out.println( currentTime - tom.lastMovedTime);
                 tom.lastMovedTime = currentTime;
                 Coordinate nextPosition = CalculateShortestPath(map, tom.getCoordinates(), jerry.getCoordinates())[1];
-//                System.out.println(tom.getCoordinates());
                 tom.move(nextPosition);
             }
             if (isGameOver()) {
                 refresh.stop();
-                SceneManager.getInstance().toGameOver();
+                SceneManager.getInstance().toGameOver(jerry.position.equals(map.exitPos));
 
             }
         }
