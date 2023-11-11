@@ -6,10 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
-
 public class indexController {
 
     @FXML
@@ -22,35 +18,35 @@ public class indexController {
     private Button startGame;
 
     @FXML
-    void mouseClickedMapCustomization(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    void mouseClickedMapCustomization(MouseEvent event) {
         AudioManager.getInstance().play("/sounds/done.wav");
         SceneManager.getInstance().toEditor();
     }
 
     @FXML
-    void mouseClickedShortestPath(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    void mouseClickedShortestPath(MouseEvent event) {
         AudioManager.getInstance().play("/sounds/done.wav");
         SceneManager.getInstance().toShortestPath();
     }
 
     @FXML
-    void mouseClickedStartGame(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    void mouseClickedStartGame(MouseEvent event) {
         AudioManager.getInstance().play("/sounds/done.wav");
         SceneManager.getInstance().toGame();
     }
 
     @FXML
-    void mouseEnteredMapCustomization(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    void mouseEnteredMapCustomization(MouseEvent event) {
         AudioManager.getInstance().play("/sounds/button.wav");
     }
 
     @FXML
-    void mouseEnteredShortestPath(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    void mouseEnteredShortestPath(MouseEvent event) {
         AudioManager.getInstance().play("/sounds/button.wav");
     }
 
     @FXML
-    void mouseEnteredStartGame(MouseEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    void mouseEnteredStartGame(MouseEvent event) {
         AudioManager.getInstance().play("/sounds/button.wav");
     }
 
