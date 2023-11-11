@@ -22,7 +22,7 @@
             </ImageView>
             <HBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                  <VBox alignment="TOP_CENTER" minWidth="100.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
                         <Button fx:id="returnHomeButton" mnemonicParsing="false" onAction="#returnHomeButtonPressed" prefHeight="30.0" prefWidth="100.0" text="Home" textAlignment="CENTER">
                            <font>
