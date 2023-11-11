@@ -15,8 +15,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 
@@ -44,17 +42,7 @@ public class Editor {
         clearMapButton.setText("ClearMap");
         clearMapButton.setOnAction(actionEvent -> {
             //sound effect
-            try {
-                AudioManager.getInstance().play("/sounds/alert.wav");
-            } catch (UnsupportedAudioFileException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (LineUnavailableException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            AudioManager.getInstance().play("/sounds/alert.wav");
 
             Alert clearMap = new Alert(Alert.AlertType.WARNING);
             clearMap.setTitle("About to Clear map...");
@@ -80,17 +68,7 @@ public class Editor {
         Button returnHome = controller.getReturnHomeButton();
         returnHome.setOnAction(actionEvent -> {
             //sound effect
-            try {
-                AudioManager.getInstance().play("/sounds/alert.wav");
-            } catch (UnsupportedAudioFileException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (LineUnavailableException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            AudioManager.getInstance().play("/sounds/alert.wav");
 
             Alert saveMap = new Alert(Alert.AlertType.NONE);
             saveMap.setTitle("About to exit Map Editor...");
@@ -122,17 +100,7 @@ public class Editor {
                 }
                 if (path.length == 0 || !hasMultiplePath){
                     //sound effect
-                    try {
-                        AudioManager.getInstance().play("/sounds/alert.wav");
-                    } catch (UnsupportedAudioFileException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (LineUnavailableException e) {
-                        throw new RuntimeException(e);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                    AudioManager.getInstance().play("/sounds/alert.wav");
 
                     Alert warning = new Alert(Alert.AlertType.WARNING);
                     warning.setTitle("Save map Failed");
@@ -174,17 +142,7 @@ public class Editor {
             }
 
             //sound effect
-            try {
-                AudioManager.getInstance().play("/sounds/block flick.wav");
-            } catch (UnsupportedAudioFileException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (LineUnavailableException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            AudioManager.getInstance().play("/sounds/block flick.wav");
 
         });
 
@@ -229,17 +187,7 @@ public class Editor {
                 if (newPos.getType() == BlockType.BOUNDARY) {
 
                     //sound effect
-                    try {
-                        AudioManager.getInstance().play("/sounds/block flick.wav");
-                    } catch (UnsupportedAudioFileException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (LineUnavailableException e) {
-                        throw new RuntimeException(e);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                    AudioManager.getInstance().play("/sounds/block flick.wav");
 
                     newPos.setType(initType==BlockType.ENTRY ? BlockType.ENTRY : BlockType.EXIT);
                     initBlock.setType(BlockType.BOUNDARY);
@@ -261,17 +209,7 @@ public class Editor {
                 }
 
                 //sound effect
-                try {
-                    AudioManager.getInstance().play("/sounds/block flick.wav");
-                } catch (UnsupportedAudioFileException e) {
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } catch (LineUnavailableException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                AudioManager.getInstance().play("/sounds/block flick.wav");
 
             }
         });

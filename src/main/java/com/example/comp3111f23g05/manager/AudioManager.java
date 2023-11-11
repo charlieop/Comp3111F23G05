@@ -11,18 +11,27 @@ public class AudioManager {
         return instance;
     }
 
-    public void play(String fileName) throws UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
+    public void play(String fileName) {
         URL url = AudioManager.class.getResource(fileName);
         if(url == null){
             System.out.println("can not find file named: " + fileName);
             return;
         }
-        AudioInputStream ais = AudioSystem.getAudioInputStream(url);
-        DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
-        Clip clip = (Clip) AudioSystem.getLine(info);
-        clip.open(ais);
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(url);
+            DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
+            Clip clip = (Clip) AudioSystem.getLine(info);
+            clip.open(ais);
 
-        clip.start();
+            clip.start();
+        } catch (UnsupportedAudioFileException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
