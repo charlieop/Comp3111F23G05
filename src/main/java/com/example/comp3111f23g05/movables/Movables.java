@@ -6,9 +6,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public abstract class Movables{
-    boolean alive = true;
-    Coordinate position;
-    Image image;
+    private boolean alive = true;
+    public Coordinate position;
+    private Image image;
+    public long lastMovedTime = 0;
 
     public Movables(Coordinate position, String imageName) {
         this.position = position;
@@ -25,8 +26,10 @@ public abstract class Movables{
 
     public void paint(GraphicsContext graphicsContext) {
         final int size = SceneManager.BLOCK_SIZE;
-        graphicsContext.drawImage(image, position.x*size, position.y*size, size, size);
+        graphicsContext.drawImage(image, position.x * size, position.y * size, size, size);
     }
 
-    public abstract void move();
+    public void move(Coordinate nextPosition){
+        position = nextPosition;
+    }
 }

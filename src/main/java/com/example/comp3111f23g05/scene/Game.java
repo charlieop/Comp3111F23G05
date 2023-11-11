@@ -16,14 +16,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Game {
-    public static void init(Stage stage, Map map) {
+    public static void init(Stage stage) {
         Parent root = null;
+        Map map = new Map();
         MapGUI gui = new MapGUI(map, new Coordinate[0]);
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("/fxml/gameArea.fxml"));
         try {
             root = loader.load();
         } catch (IOException ignored) {
         }
+        GameManager.getInstance().init(root, map);
         gameAreaController controller = loader.getController();
         // more scene settings
         Button pause = controller.getFunctionalButton();
