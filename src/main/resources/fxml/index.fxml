@@ -13,17 +13,17 @@
             <Image url="@../images/indexPage.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="startGame" layoutX="601.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#mouseClickedStartGame" onMouseEntered="#mouseEnteredStartGame" prefHeight="40.0" prefWidth="250.0" text="Start Game" textAlignment="CENTER">
+      <Button fx:id="startGame" layoutX="601.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#mouseClickedStartGame" onMouseEntered="#mouseEnteredStartGame" onMouseExited="#mouseExitedStartGame" prefHeight="40.0" prefWidth="250.0" text="Start Game" textAlignment="CENTER">
          <font>
             <Font name="Wawati SC Regular" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="mapCustomization" layoutX="601.0" layoutY="353.0" mnemonicParsing="false" onMouseClicked="#mouseClickedMapCustomization" onMouseEntered="#mouseEnteredMapCustomization" prefHeight="40.0" prefWidth="250.0" text="Edit Map" textAlignment="CENTER">
+      <Button fx:id="mapCustomization" layoutX="601.0" layoutY="353.0" mnemonicParsing="false" onMouseClicked="#mouseClickedMapCustomization" onMouseEntered="#mouseEnteredMapCustomization" onMouseExited="#mouseExitedMapCustomization" prefHeight="40.0" prefWidth="250.0" text="Edit Map" textAlignment="CENTER">
          <font>
             <Font name="Wawati SC Regular" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="shortestPath" layoutX="601.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#mouseClickedShortestPath" onMouseEntered="#mouseEnteredShortestPath" prefHeight="40.0" prefWidth="250.0" text="See the Shortest Path" textAlignment="CENTER">
+      <Button fx:id="shortestPath" layoutX="601.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#mouseClickedShortestPath" onMouseEntered="#mouseEnteredShortestPath" onMouseExited="#mouseExitedShortestPath" prefHeight="40.0" prefWidth="250.0" text="Display Shortest Path" textAlignment="CENTER">
          <font>
             <Font name="Wawati SC Regular" size="19.0" />
          </font>

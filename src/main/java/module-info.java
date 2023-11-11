@@ -2,6 +2,7 @@ module com.example.comp3111f23g05 {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.swing;
+    requires java.desktop;
 
     opens com.example.comp3111f23g05 to javafx.fxml, javafx.controls;
     exports com.example.comp3111f23g05;

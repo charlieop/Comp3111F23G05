@@ -6,6 +6,7 @@ import com.example.comp3111f23g05.scene.Game;
 import com.example.comp3111f23g05.scene.Index;
 import com.example.comp3111f23g05.scene.ShortestPath;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ public class SceneManager {
         AnchorPane root = new AnchorPane();
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setTitle("Tom & Jerry Maze Game - G05");
+        stage.getIcons().add(new Image(String.valueOf(Index.class.getResource("/images/icon.jpg"))));
         stage.setResizable(false);
         stage.setScene(scene);
         stage.setMinHeight(HEIGHT);

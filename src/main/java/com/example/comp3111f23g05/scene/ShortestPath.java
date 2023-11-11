@@ -1,6 +1,7 @@
 package com.example.comp3111f23g05.scene;
 
 import com.example.comp3111f23g05.controller.gameAreaController;
+import com.example.comp3111f23g05.manager.AudioManager;
 import com.example.comp3111f23g05.manager.GameManager;
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
@@ -40,6 +41,10 @@ public class ShortestPath {
         generate.setText("Generate CSV");
         generate.setOnAction(actionEvent -> {
             GeneratePathCSV("ShortestPathData.csv", path);
+
+            //sound effect
+            AudioManager.getInstance().play("/sounds/alert.wav");
+
             Alert PathData = new Alert(Alert.AlertType.INFORMATION);
             PathData.setTitle("Generate Path Data CSV");
             PathData.setHeaderText("CSV file is successfully generated.");
