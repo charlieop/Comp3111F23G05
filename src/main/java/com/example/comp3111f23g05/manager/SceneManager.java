@@ -1,10 +1,7 @@
 package com.example.comp3111f23g05.manager;
 
 import com.example.comp3111f23g05.map.Map;
-import com.example.comp3111f23g05.scene.Editor;
-import com.example.comp3111f23g05.scene.Game;
-import com.example.comp3111f23g05.scene.Index;
-import com.example.comp3111f23g05.scene.ShortestPath;
+import com.example.comp3111f23g05.scene.*;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -48,8 +45,12 @@ public class SceneManager {
         ShortestPath.init(stage);
     }
     public void toGame(){
-        Game.init(stage);
+        Map map = new Map();
+        GameManager.getInstance().init(map);
+        Game.init(stage, map);
     }
-
+    public void toGameOver(){
+        GameOver.init(stage);
+    }
 
 }
