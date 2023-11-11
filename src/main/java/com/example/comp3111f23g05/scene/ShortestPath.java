@@ -12,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
@@ -32,8 +31,7 @@ public class ShortestPath {
         FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource("/fxml/gameArea.fxml"));
         try {
             root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ignored) {
         }
         gameAreaController controller = loader.getController();
 
@@ -53,9 +51,6 @@ public class ShortestPath {
             PathData.getButtonTypes().add(ButtonType.OK);
             PathData.showAndWait();
         });
-
-        Text text = controller.getInfoText();
-        text.setText("Find Path");
 
         StackPane stack = controller.getMapArea();
         stack.getChildren().add(gui);
