@@ -1,6 +1,7 @@
 package com.example.comp3111f23g05.scene;
 
 import com.example.comp3111f23g05.controller.gameAreaController;
+import com.example.comp3111f23g05.manager.AudioManager;
 import com.example.comp3111f23g05.manager.GameManager;
 import com.example.comp3111f23g05.manager.SceneManager;
 import com.example.comp3111f23g05.map.*;
@@ -40,6 +41,9 @@ public class Editor {
         Button clearMapButton = controller.getFunctionalButton();
         clearMapButton.setText("ClearMap");
         clearMapButton.setOnAction(actionEvent -> {
+            //sound effect
+            AudioManager.getInstance().play("/sounds/alert.wav");
+
             Alert clearMap = new Alert(Alert.AlertType.WARNING);
             clearMap.setTitle("About to Clear map...");
             clearMap.setHeaderText("Do you want to clear the map?");
@@ -63,6 +67,9 @@ public class Editor {
 
         Button returnHome = controller.getReturnHomeButton();
         returnHome.setOnAction(actionEvent -> {
+            //sound effect
+            AudioManager.getInstance().play("/sounds/alert.wav");
+
             Alert saveMap = new Alert(Alert.AlertType.NONE);
             saveMap.setTitle("About to exit Map Editor...");
             saveMap.setHeaderText("Do you want to save the map?");
@@ -92,6 +99,9 @@ public class Editor {
                     }
                 }
                 if (path.length == 0 || !hasMultiplePath){
+                    //sound effect
+                    AudioManager.getInstance().play("/sounds/alert.wav");
+
                     Alert warning = new Alert(Alert.AlertType.WARNING);
                     warning.setTitle("Save map Failed");
                     warning.setHeaderText("There must be at least 2 path from entry to exit!");
@@ -130,6 +140,10 @@ public class Editor {
             } else if (selected.getType() == BlockType.CLEAR) {
                 selected.setType(BlockType.BARRIER);
             }
+
+            //sound effect
+            AudioManager.getInstance().play("/sounds/block flick.wav");
+
         });
 
         // handle drag to edit map
@@ -171,6 +185,10 @@ public class Editor {
                 // change entry exit position
                 Block newPos = map.getMap()[y][x];
                 if (newPos.getType() == BlockType.BOUNDARY) {
+
+                    //sound effect
+                    AudioManager.getInstance().play("/sounds/block flick.wav");
+
                     newPos.setType(initType==BlockType.ENTRY ? BlockType.ENTRY : BlockType.EXIT);
                     initBlock.setType(BlockType.BOUNDARY);
                     initX = x;
@@ -189,6 +207,10 @@ public class Editor {
                 } else if (selected.getType() == BlockType.CLEAR) {
                     selected.setType(BlockType.BARRIER);
                 }
+
+                //sound effect
+                AudioManager.getInstance().play("/sounds/block flick.wav");
+
             }
         });
 
