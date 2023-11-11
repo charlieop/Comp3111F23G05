@@ -3,6 +3,7 @@ package com.example.comp3111f23g05.scene;
 import com.example.comp3111f23g05.controller.gameAreaController;
 import com.example.comp3111f23g05.manager.AudioManager;
 import com.example.comp3111f23g05.manager.GameManager;
+import com.example.comp3111f23g05.manager.Sound;
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
 import com.example.comp3111f23g05.map.MapGUI;
@@ -41,7 +42,7 @@ public class ShortestPath {
             GeneratePathCSV("ShortestPathData.csv", path);
 
             //sound effect
-            AudioManager.getInstance().play("/sounds/alert.wav");
+            AudioManager.getInstance().play(Sound.ALERT);
 
             Alert PathData = new Alert(Alert.AlertType.INFORMATION);
             PathData.setTitle("Generate Path Data CSV");
