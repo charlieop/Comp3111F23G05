@@ -6,7 +6,7 @@ import java.net.URL;
 
 public class AudioManager {
     private static final int MAX_LOOP_TIME = 20;
-    private Clip clip; //store the looping clip
+    private Clip[] clips = new Clip[Sound.values().length]; //store the looping clip
     private static final AudioManager instance = new AudioManager();
     private final String[] soundFiles = {
             "/sounds/alert.wav",
@@ -58,24 +58,24 @@ public class AudioManager {
             Clip clip = (Clip) AudioSystem.getLine(info);
             clip.open(ais);
 
+            stop(sound);
             clip.loop(MAX_LOOP_TIME);
-            this.clip = clip;
-//            Clip[] clips = this.clips;
-//            this.clips = new Clip[this.clips.length+1];
-//            System.arraycopy(clips,0,this.clips,0, clips.length);
-//            this.clips[clips.length-1] = clip;
+            this.clips[sound.ordinal()] = clip;
+
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void stop(){
-        this.clip.stop();
-//        this.clips[pos].stop();
-//        Clip[] clips = this.clips;
-//        this.clips = new Clip[this.clips.length-1];
-//        System.arraycopy(clips,0,this.clips,0, pos+1);
-//        System.arraycopy(clips,pos+1,this.clips,pos, clips.length-pos-1);
+    public void stop(Sound sound){
+        Clip clip = this.clips[sound.ordinal()];
+        if(clip == null){
+            return;
+        }
+        if(clip.isRunning()){
+            clip.stop();
+        }
+
     }
 
 
