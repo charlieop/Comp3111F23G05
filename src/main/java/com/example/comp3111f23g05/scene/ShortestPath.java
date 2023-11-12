@@ -42,7 +42,7 @@ public class ShortestPath {
             GeneratePathCSV("ShortestPathData.csv", path);
 
             //sound effect
-            AudioManager.getInstance().play(Sound.ALERT);
+            AudioManager.getInstance().play(Sound.ALERT, false);
 
             Alert PathData = new Alert(Alert.AlertType.INFORMATION);
             PathData.setTitle("Generate Path Data CSV");

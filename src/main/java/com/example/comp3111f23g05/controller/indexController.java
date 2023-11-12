@@ -20,35 +20,36 @@ public class indexController {
 
     @FXML
     void mouseClickedMapCustomization(MouseEvent event) {
-        AudioManager.getInstance().play(Sound.DONE);
+        AudioManager.getInstance().play(Sound.DONE, false);
         SceneManager.getInstance().toEditor();
     }
 
     @FXML
     void mouseClickedShortestPath(MouseEvent event) {
-        AudioManager.getInstance().play(Sound.DONE);
+        AudioManager.getInstance().play(Sound.DONE, false);
         SceneManager.getInstance().toShortestPath();
     }
 
     @FXML
     void mouseClickedStartGame(MouseEvent event) {
-        AudioManager.getInstance().play(Sound.DONE);
+        AudioManager.getInstance().play(Sound.DONE, false);
         SceneManager.getInstance().toGame();
         AudioManager.getInstance().stop(Sound.THEME);
+        AudioManager.getInstance().play(Sound.GAME,true);
     }
 
     @FXML
     void mouseEnteredMapCustomization(MouseEvent event) {
-        AudioManager.getInstance().play(Sound.BUTTON);
+        AudioManager.getInstance().play(Sound.BUTTON, false);
     }
 
     @FXML
     void mouseEnteredShortestPath(MouseEvent event) {
-        AudioManager.getInstance().play(Sound.BUTTON);
+        AudioManager.getInstance().play(Sound.BUTTON, false);
     }
 
     @FXML
     void mouseEnteredStartGame(MouseEvent event) {
-        AudioManager.getInstance().play(Sound.BUTTON);
+        AudioManager.getInstance().play(Sound.BUTTON, false);
     }
 }

@@ -41,7 +41,7 @@ public class Editor {
         clearMapButton.setText("ClearMap");
         clearMapButton.setOnAction(actionEvent -> {
             //sound effect
-            AudioManager.getInstance().play(Sound.ALERT);
+            AudioManager.getInstance().play(Sound.ALERT, false);
 
             Alert clearMap = new Alert(Alert.AlertType.WARNING);
             clearMap.setTitle("About to Clear map...");
@@ -67,7 +67,7 @@ public class Editor {
         Button returnHome = controller.getReturnHomeButton();
         returnHome.setOnAction(actionEvent -> {
             //sound effect
-            AudioManager.getInstance().play(Sound.ALERT);
+            AudioManager.getInstance().play(Sound.ALERT, false);
 
             Alert saveMap = new Alert(Alert.AlertType.NONE);
             saveMap.setTitle("About to exit Map Editor...");
@@ -99,7 +99,7 @@ public class Editor {
                 }
                 if (path.length == 0 || !hasMultiplePath){
                     //sound effect
-                    AudioManager.getInstance().play(Sound.ALERT);
+                    AudioManager.getInstance().play(Sound.ALERT,false);
 
                     Alert warning = new Alert(Alert.AlertType.WARNING);
                     warning.setTitle("Save map Failed");
@@ -138,7 +138,7 @@ public class Editor {
             }
 
             //sound effect
-            AudioManager.getInstance().play(Sound.BLOCK);
+            AudioManager.getInstance().play(Sound.BLOCK,false);
 
         });
 
@@ -183,7 +183,7 @@ public class Editor {
                 if (newPos.getType() == BlockType.BOUNDARY) {
 
                     //sound effect
-                    AudioManager.getInstance().play(Sound.BLOCK);
+                    AudioManager.getInstance().play(Sound.BLOCK, false);
 
                     newPos.setType(initType==BlockType.ENTRY ? BlockType.ENTRY : BlockType.EXIT);
                     initBlock.setType(BlockType.BOUNDARY);
@@ -205,7 +205,7 @@ public class Editor {
                 }
 
                 //sound effect
-                AudioManager.getInstance().play(Sound.BLOCK);
+                AudioManager.getInstance().play(Sound.BLOCK, false);
 
             }
         });
