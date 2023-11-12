@@ -95,6 +95,7 @@ public class GameManager {
                 Coordinate nextPosition = keyCodeProcess(lastInput);
                 if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR ||map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.EXIT) {
                     jerry.lastMovedTime = currentTime;
+                    AudioManager.getInstance().play(Sound.JERRY, false);
                     jerry.move(nextPosition);
                     lastInput = null;
                 }
