@@ -35,6 +35,7 @@ public class GameManager {
     private GraphicsContext graphicsContext;
     private Map map;
     private final Refresh refresh = new Refresh();
+    KeyCode lastInput = null;
 
     private long currentTime;
 
@@ -56,8 +57,12 @@ public class GameManager {
                 if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR ||map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.EXIT) {
                     jerry.lastMovedTime = currentTime;
                     jerry.move(nextPosition);
+                    lastInput = null;
                 }
 
+            }
+            else {
+                lastInput = keycode;
             }
         });
         refresh.start();
@@ -85,6 +90,14 @@ public class GameManager {
         public void handle(long now) {
             currentTime = now;
             paint();
+            if (currentTime - jerry.lastMovedTime > Jerry.MINIMUM_MOVEMENT_INTERVAL && lastInput!=null) {
+                Coordinate nextPosition = keyCodeProcess(lastInput);
+                if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR ||map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.EXIT) {
+                    jerry.lastMovedTime = currentTime;
+                    jerry.move(nextPosition);
+                    lastInput = null;
+                }
+            }
             if (currentTime - tom.lastMovedTime > Tom.MINIMUM_MOVEMENT_INTERVAL) {
                 tom.lastMovedTime = currentTime;
                 Coordinate nextPosition = CalculateShortestPath(map, tom.getCoordinates(), jerry.getCoordinates())[1];
