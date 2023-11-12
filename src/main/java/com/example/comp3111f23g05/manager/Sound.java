@@ -7,6 +7,9 @@ public enum Sound {
         BUTTON,
         DONE,
         THEME,
-        GAME
+        GAME,
+        JERRY,
+        VICTORY,
+        FAILURE
 
 }

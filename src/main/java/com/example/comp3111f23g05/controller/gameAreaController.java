@@ -1,6 +1,8 @@
 package com.example.comp3111f23g05.controller;
 
+import com.example.comp3111f23g05.manager.AudioManager;
 import com.example.comp3111f23g05.manager.SceneManager;
+import com.example.comp3111f23g05.manager.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,6 +37,8 @@ public class gameAreaController {
 
     @FXML
     void returnHomeButtonPressed(ActionEvent event) {
+        AudioManager.getInstance().stop(Sound.GAME);
+        AudioManager.getInstance().play(Sound.THEME,true);
         SceneManager.getInstance().toIndex();
     }
 }

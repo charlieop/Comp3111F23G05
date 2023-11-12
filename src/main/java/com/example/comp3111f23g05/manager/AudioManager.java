@@ -14,7 +14,10 @@ public class AudioManager {
             "/sounds/button.wav",
             "/sounds/done.wav",
             "/sounds/themeSong.wav",
-            "/sounds/gameSong.wav"
+            "/sounds/gameSong.wav",
+            "/sounds/Jerry.wav",
+            "/sounds/victory.wav",
+            "/sounds/failure.wav"
     };
 
     private AudioManager() {}
@@ -23,30 +26,12 @@ public class AudioManager {
     }
 
 
-    public void play(Sound sound) {
-        String fileName = soundFiles[sound.ordinal()];
-        URL url = AudioManager.class.getResource(fileName);
-        if(url == null){
-            System.out.println("can not find file named: " + fileName);
-        }
-        try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(url);
-            DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
-            Clip clip = (Clip) AudioSystem.getLine(info);
-            clip.open(ais);
-
-            clip.start();
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
     public void play(Sound sound, boolean loop ){
-        if(!loop){
-            play(sound);
+
+        if(this.clips[sound.ordinal()] != null && this.clips[sound.ordinal()].isRunning() && loop){
             return;
         }
+
         String fileName = soundFiles[sound.ordinal()];
         URL url = AudioManager.class.getResource(fileName);
         if(url == null){
@@ -57,6 +42,11 @@ public class AudioManager {
             DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
             Clip clip = (Clip) AudioSystem.getLine(info);
             clip.open(ais);
+
+            if(!loop){
+                clip.start();
+                return;
+            }
 
             stop(sound);
             clip.loop(MAX_LOOP_TIME);
@@ -69,10 +59,7 @@ public class AudioManager {
 
     public void stop(Sound sound){
         Clip clip = this.clips[sound.ordinal()];
-        if(clip == null){
-            return;
-        }
-        if(clip.isRunning()){
+        if(clip != null && clip.isRunning()){
             clip.stop();
         }
 

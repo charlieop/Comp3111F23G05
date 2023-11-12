@@ -1,7 +1,9 @@
 package com.example.comp3111f23g05.scene;
 
 import com.example.comp3111f23g05.controller.gameAreaController;
+import com.example.comp3111f23g05.manager.AudioManager;
 import com.example.comp3111f23g05.manager.GameManager;
+import com.example.comp3111f23g05.manager.Sound;
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
 import com.example.comp3111f23g05.map.MapGUI;
@@ -17,6 +19,14 @@ import java.io.IOException;
 
 public class GameOver {
     public static void init(Stage stage, boolean isWinner) {
+
+        if(isWinner){
+            AudioManager.getInstance().play(Sound.VICTORY, false);
+        }
+        else {
+            AudioManager.getInstance().play(Sound.FAILURE, false);
+        }
+
         Parent root = null;
         Map map = new Map();
         Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.entryPos, map.exitPos);

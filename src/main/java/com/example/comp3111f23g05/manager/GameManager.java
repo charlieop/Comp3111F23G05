@@ -56,6 +56,7 @@ public class GameManager {
                 Coordinate nextPosition = keyCodeProcess(keycode);
                 if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR ||map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.EXIT) {
                     jerry.lastMovedTime = currentTime;
+                    AudioManager.getInstance().play(Sound.JERRY, false);
                     jerry.move(nextPosition);
                     lastInput = null;
                 }
@@ -105,6 +106,7 @@ public class GameManager {
             }
             if (isGameOver()) {
                 refresh.stop();
+                AudioManager.getInstance().stop(Sound.GAME);
                 SceneManager.getInstance().toGameOver(jerry.position.equals(map.exitPos));
 
             }
