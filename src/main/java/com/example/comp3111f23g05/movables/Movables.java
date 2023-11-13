@@ -5,12 +5,14 @@ import com.example.comp3111f23g05.map.Coordinate;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public abstract class Movables{
+public class Movables{
     public Coordinate position;
-    private Image image;
+    private final Image image;
     public long lastMovedTime = 0;
+    public long MINIMUM_MOVEMENT_INTERVAL;
 
-    public Movables(Coordinate position, String imageName) {
+    public Movables(Coordinate position, String imageName, long speed) {
+        MINIMUM_MOVEMENT_INTERVAL = speed;
         this.position = position;
         this.image = new Image(getClass().getResourceAsStream(imageName));
     }

@@ -3,8 +3,7 @@ package com.example.comp3111f23g05.manager;
 import com.example.comp3111f23g05.map.Block;
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
-import com.example.comp3111f23g05.movables.Jerry;
-import com.example.comp3111f23g05.movables.Tom;
+import com.example.comp3111f23g05.movables.Movables;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
@@ -28,29 +27,27 @@ public class GameManager {
     public Canvas getCanvas() {
         return canvas;
     }
-    private Tom tom;
-    private Jerry jerry;
+    private Movables tom;
+    private Movables jerry;
 
     private GraphicsContext graphicsContext;
     private Map map;
     public final Refresh refresh = new Refresh();
     KeyCode lastInput = null;
 
-    private long currentTime;
-
     public void init(Parent root, Map map) {
         this.map = map;
         Coordinate tomPos = new Coordinate(map.exitPos.x, map.exitPos.y);
         Coordinate jerryPos = new Coordinate(map.entryPos.x, map.entryPos.y);
-        tom = new Tom(tomPos);
-        jerry = new Jerry(jerryPos);
+        long tomTime = (long) (0.3 * Math.pow(10, 9));
+        long jerryTime = (long) (0.4 * Math.pow(10, 9));
+        tom = new Movables(tomPos, "/images/Tom.png", tomTime);
+        jerry = new Movables(jerryPos, "/images/Jerry.gif", jerryTime);
         canvas = new Canvas();
         canvas.setWidth(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         canvas.setHeight(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         graphicsContext = canvas.getGraphicsContext2D();
-        root.setOnKeyPressed(event -> {
-            lastInput = event.getCode();
-        });
+        root.setOnKeyPressed(event -> lastInput = event.getCode());
         refresh.start();
     }
 
@@ -73,7 +70,6 @@ public class GameManager {
     public class Refresh extends AnimationTimer {
         @Override
         public void handle(long now) {
-            currentTime = now;
             graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             jerry.paint(graphicsContext);
             tom.paint(graphicsContext);
@@ -82,17 +78,17 @@ public class GameManager {
                 AudioManager.getInstance().stop(Sound.GAME);
                 SceneManager.getInstance().toGameOver(jerry.position.equals(map.exitPos));
             }
-            if (currentTime - tom.lastMovedTime > Tom.MINIMUM_MOVEMENT_INTERVAL) {
-                tom.lastMovedTime = currentTime;
+            if (now - tom.lastMovedTime > tom.MINIMUM_MOVEMENT_INTERVAL) {
+                tom.lastMovedTime = now;
                 Coordinate nextPosition = CalculateShortestPath(map, tom.getCoordinates(), jerry.getCoordinates())[1];
                 tom.move(nextPosition);
             }
-            if (currentTime - jerry.lastMovedTime < Jerry.MINIMUM_MOVEMENT_INTERVAL || lastInput==null) {
+            if (now - jerry.lastMovedTime < jerry.MINIMUM_MOVEMENT_INTERVAL || lastInput==null) {
                 return;
             }
             Coordinate nextPosition = keyCodeProcess(lastInput);
             if (map.getMap()[nextPosition.y][nextPosition.x].reachable()) {
-                jerry.lastMovedTime = currentTime;
+                jerry.lastMovedTime = now;
                 AudioManager.getInstance().play(Sound.JERRY, false);
                 jerry.move(nextPosition);
                 lastInput = null;
