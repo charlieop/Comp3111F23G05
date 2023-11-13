@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 public class Movables{
     public Coordinate position;
-    private Image image;
+    private final Image image;
     public long lastMovedTime = 0;
     public long MINIMUM_MOVEMENT_INTERVAL;
 
