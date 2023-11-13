@@ -1,10 +1,10 @@
 package com.example.comp3111f23g05.manager;
 
 import com.example.comp3111f23g05.map.Block;
-import com.example.comp3111f23g05.map.BlockType;
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
-import com.example.comp3111f23g05.movables.Movables;
+import com.example.comp3111f23g05.movables.Jerry;
+import com.example.comp3111f23g05.movables.Tom;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
@@ -28,12 +28,12 @@ public class GameManager {
     public Canvas getCanvas() {
         return canvas;
     }
-    private Movables tom;
-    private Movables jerry;
+    private Tom tom;
+    private Jerry jerry;
 
     private GraphicsContext graphicsContext;
     private Map map;
-    private final Refresh refresh = new Refresh();
+    public final Refresh refresh = new Refresh();
     KeyCode lastInput = null;
 
     private long currentTime;
@@ -42,30 +42,14 @@ public class GameManager {
         this.map = map;
         Coordinate tomPos = new Coordinate(map.exitPos.x, map.exitPos.y);
         Coordinate jerryPos = new Coordinate(map.entryPos.x, map.entryPos.y);
-        long jerryTime = (long) (0.35 * Math.pow(10, 9));
-        long tomTime = (long) (0.3 * Math.pow(10, 9));
-        tom = new Movables(tomPos, "/images/Tom.png", tomTime);
-        jerry = new Movables(jerryPos, "/images/Jerry.gif", jerryTime);
+        tom = new Tom(tomPos);
+        jerry = new Jerry(jerryPos);
         canvas = new Canvas();
         canvas.setWidth(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         canvas.setHeight(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         graphicsContext = canvas.getGraphicsContext2D();
-
         root.setOnKeyPressed(event -> {
-            KeyCode keycode = event.getCode();
-            if (currentTime - jerry.lastMovedTime > jerry.MINIMUM_MOVEMENT_INTERVAL) {
-                Coordinate nextPosition = keyCodeProcess(keycode);
-                if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR ||map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.EXIT) {
-                    jerry.lastMovedTime = currentTime;
-                    AudioManager.getInstance().play(Sound.JERRY, false);
-                    jerry.move(nextPosition);
-                    lastInput = null;
-                }
-
-            }
-            else {
-                lastInput = keycode;
-            }
+            lastInput = event.getCode();
         });
         refresh.start();
     }
@@ -83,46 +67,38 @@ public class GameManager {
         if (!Coordinate.checkX(x + nextPosition[0]) || !Coordinate.checkY(y+nextPosition[1])) {
             nextPosition = new int[]{0, 0};
         }
-
         return new Coordinate(x + nextPosition[0], y+nextPosition[1]);
     }
 
-    private class Refresh extends AnimationTimer {
+    public class Refresh extends AnimationTimer {
         @Override
         public void handle(long now) {
             currentTime = now;
-            paint();
-            if (currentTime - jerry.lastMovedTime > jerry.MINIMUM_MOVEMENT_INTERVAL && lastInput!=null) {
-                Coordinate nextPosition = keyCodeProcess(lastInput);
-                if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR ||map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.EXIT) {
-                    jerry.lastMovedTime = currentTime;
-                    AudioManager.getInstance().play(Sound.JERRY, false);
-                    jerry.move(nextPosition);
-                    lastInput = null;
-                }
+            graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            jerry.paint(graphicsContext);
+            tom.paint(graphicsContext);
+            if (jerry.position.equals(tom.position) || jerry.position.equals(map.exitPos)) {
+                refresh.stop();
+                AudioManager.getInstance().stop(Sound.GAME);
+                SceneManager.getInstance().toGameOver(jerry.position.equals(map.exitPos));
             }
-            if (currentTime - tom.lastMovedTime > tom.MINIMUM_MOVEMENT_INTERVAL) {
+            if (currentTime - tom.lastMovedTime > Tom.MINIMUM_MOVEMENT_INTERVAL) {
                 tom.lastMovedTime = currentTime;
                 Coordinate nextPosition = CalculateShortestPath(map, tom.getCoordinates(), jerry.getCoordinates())[1];
                 tom.move(nextPosition);
             }
-            if (isGameOver()) {
-                refresh.stop();
-                AudioManager.getInstance().stop(Sound.GAME);
-                SceneManager.getInstance().toGameOver(jerry.position.equals(map.exitPos));
-
+            if (currentTime - jerry.lastMovedTime < Jerry.MINIMUM_MOVEMENT_INTERVAL || lastInput==null) {
+                return;
             }
+            Coordinate nextPosition = keyCodeProcess(lastInput);
+            if (map.getMap()[nextPosition.y][nextPosition.x].reachable()) {
+                jerry.lastMovedTime = currentTime;
+                AudioManager.getInstance().play(Sound.JERRY, false);
+                jerry.move(nextPosition);
+                lastInput = null;
+            }
+
         }
-    }
-
-    private void paint(){
-        graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        jerry.paint(graphicsContext);
-        tom.paint(graphicsContext);
-    }
-
-    private boolean isGameOver(){
-        return (jerry.position.equals(tom.position) || jerry.position.equals(map.exitPos));
     }
 
 // return empty array if invalid or no path found
