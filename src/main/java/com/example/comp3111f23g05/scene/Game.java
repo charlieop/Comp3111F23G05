@@ -2,6 +2,7 @@ package com.example.comp3111f23g05.scene;
 
 import com.example.comp3111f23g05.controller.gameAreaController;
 import com.example.comp3111f23g05.manager.GameManager;
+import com.example.comp3111f23g05.manager.SceneManager;
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
 import com.example.comp3111f23g05.map.MapGUI;
@@ -27,8 +28,15 @@ public class Game {
         GameManager.getInstance().init(root, map);
         gameAreaController controller = loader.getController();
         // more scene settings
-        Button pause = controller.getFunctionalButton();
-        pause.setText("Pause");
+        Button hidden = controller.getFunctionalButton();
+        hidden.setVisible(false);
+
+        Button home = controller.getReturnHomeButton();
+        home.setOnAction(actionEvent -> {
+            GameManager.getInstance().refresh.stop();
+            SceneManager.getInstance().toIndex();
+        });
+
 
         StackPane stack = controller.getMapArea();
         stack.getChildren().add(gui);
