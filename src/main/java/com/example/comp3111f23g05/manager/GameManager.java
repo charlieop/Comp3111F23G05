@@ -4,8 +4,7 @@ import com.example.comp3111f23g05.map.Block;
 import com.example.comp3111f23g05.map.BlockType;
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
-import com.example.comp3111f23g05.movables.Jerry;
-import com.example.comp3111f23g05.movables.Tom;
+import com.example.comp3111f23g05.movables.Movables;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
@@ -29,8 +28,8 @@ public class GameManager {
     public Canvas getCanvas() {
         return canvas;
     }
-    private Tom tom;
-    private Jerry jerry;
+    private Movables tom;
+    private Movables jerry;
 
     private GraphicsContext graphicsContext;
     private Map map;
@@ -43,8 +42,10 @@ public class GameManager {
         this.map = map;
         Coordinate tomPos = new Coordinate(map.exitPos.x, map.exitPos.y);
         Coordinate jerryPos = new Coordinate(map.entryPos.x, map.entryPos.y);
-        tom = new Tom(tomPos);
-        jerry = new Jerry(jerryPos);
+        long jerryTime = (long) (0.35 * Math.pow(10, 9));
+        long tomTime = (long) (0.3 * Math.pow(10, 9));
+        tom = new Movables(tomPos, "/images/Tom.png", tomTime);
+        jerry = new Movables(jerryPos, "/images/Jerry.gif", jerryTime);
         canvas = new Canvas();
         canvas.setWidth(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         canvas.setHeight(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
@@ -52,7 +53,7 @@ public class GameManager {
 
         root.setOnKeyPressed(event -> {
             KeyCode keycode = event.getCode();
-            if (currentTime - jerry.lastMovedTime > Jerry.MINIMUM_MOVEMENT_INTERVAL) {
+            if (currentTime - jerry.lastMovedTime > jerry.MINIMUM_MOVEMENT_INTERVAL) {
                 Coordinate nextPosition = keyCodeProcess(keycode);
                 if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR ||map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.EXIT) {
                     jerry.lastMovedTime = currentTime;
@@ -91,7 +92,7 @@ public class GameManager {
         public void handle(long now) {
             currentTime = now;
             paint();
-            if (currentTime - jerry.lastMovedTime > Jerry.MINIMUM_MOVEMENT_INTERVAL && lastInput!=null) {
+            if (currentTime - jerry.lastMovedTime > jerry.MINIMUM_MOVEMENT_INTERVAL && lastInput!=null) {
                 Coordinate nextPosition = keyCodeProcess(lastInput);
                 if (map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.CLEAR ||map.getMap()[nextPosition.y][nextPosition.x].getType() == BlockType.EXIT) {
                     jerry.lastMovedTime = currentTime;
@@ -100,7 +101,7 @@ public class GameManager {
                     lastInput = null;
                 }
             }
-            if (currentTime - tom.lastMovedTime > Tom.MINIMUM_MOVEMENT_INTERVAL) {
+            if (currentTime - tom.lastMovedTime > tom.MINIMUM_MOVEMENT_INTERVAL) {
                 tom.lastMovedTime = currentTime;
                 Coordinate nextPosition = CalculateShortestPath(map, tom.getCoordinates(), jerry.getCoordinates())[1];
                 tom.move(nextPosition);
