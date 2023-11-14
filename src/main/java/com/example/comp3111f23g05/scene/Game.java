@@ -1,8 +1,10 @@
 package com.example.comp3111f23g05.scene;
 
 import com.example.comp3111f23g05.controller.gameAreaController;
+import com.example.comp3111f23g05.manager.AudioManager;
 import com.example.comp3111f23g05.manager.GameManager;
 import com.example.comp3111f23g05.manager.SceneManager;
+import com.example.comp3111f23g05.manager.Sound;
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
 import com.example.comp3111f23g05.map.MapGUI;
@@ -34,6 +36,8 @@ public class Game {
         Button home = controller.getReturnHomeButton();
         home.setOnAction(actionEvent -> {
             GameManager.getInstance().refresh.stop();
+            AudioManager.getInstance().stop(Sound.GAME);
+            AudioManager.getInstance().play(Sound.THEME, true);
             SceneManager.getInstance().toIndex();
         });
 
