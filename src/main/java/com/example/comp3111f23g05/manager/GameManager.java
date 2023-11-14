@@ -130,9 +130,9 @@ public class GameManager {
         // find min subpath
         int minLen = 99999;
         for (Coordinate pos : start.surroundings()) {
-            if (!Coordinate.checkX(pos.x) || !Coordinate.checkY(pos.y)) { //double check pos
-                continue;
-            }
+//            if (!Coordinate.checkX(pos.x) || !Coordinate.checkY(pos.y)) { //double check pos
+//                continue;
+//            }
             Block cur = mapData[pos.y][pos.x];
             if (!cur.reachable())
                 continue;
