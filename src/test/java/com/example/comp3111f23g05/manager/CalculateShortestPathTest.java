@@ -11,7 +11,7 @@ class CalculateShortestPathTest {
 
     //Specification
     // There are two methods that are responsible to find the shortest path,
-    // they have the same name, ClaculateShortestPath, but different accessibility and parameter list.
+    // they have the same name, ClaculateShortestPath(), but different accessibility and parameter list.
     // This design is to enable the usage of a array that can be kept updating in the recursive calls.
     // The public one is served as an interface for method calling,
     // and the private one is main method to find the path.
