@@ -16,11 +16,11 @@ public class AudioManager {
 
 
     public void play(Sound sound, boolean loop ){
-
+        // multiple play() calls of bgm
         if(this.clips[sound.ordinal()] != null && this.clips[sound.ordinal()].isRunning() && loop){
             return;
         }
-
+        //create a new clip for the sound
         URL url = AudioManager.class.getResource(sound.url);
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream(url);
@@ -28,12 +28,12 @@ public class AudioManager {
             Clip clip = (Clip) AudioSystem.getLine(info);
             clip.open(ais);
 
+            // instant sound effect
             if(!loop){
                 clip.start();
                 return;
             }
-
-            stop(sound);
+            // bgm
             clip.loop(MAX_LOOP_TIME);
             this.clips[sound.ordinal()] = clip;
 
@@ -43,6 +43,7 @@ public class AudioManager {
 
     public void stop(Sound sound){
         Clip clip = this.clips[sound.ordinal()];
+        // stop if exist and is running
         if(clip != null && clip.isRunning()){
             clip.stop();
         }
