@@ -34,6 +34,7 @@ public class SceneManager {
         toIndex();
         stage.show();
         stage.requestFocus();
+        stage.toFront();
     }
 
     public void toIndex(){
