@@ -38,12 +38,9 @@ public class Block extends StackPane {
         Random random = new Random();
         switch (type) {
             case BARRIER:
-                if (random.nextInt(100) < 7) {
-                    img = new Image(String.valueOf(Game.class.getResource("/images/barriers/barrier-" + random.nextInt(6) + ".png")));
-                }
-                else {
-                    img = new Image(String.valueOf(Game.class.getResource("/images/barriers/barrier.png")));
-                }
+                int i = random.nextInt(90);
+                String name = i < 6 ? "-" + i : "";
+                img = new Image(String.valueOf(Game.class.getResource("/images/barriers/barrier" + name + ".png")));
                 imageView.setImage(img);
                 getChildren().add(imageView);
                 base.setFill(Color.TRANSPARENT);
