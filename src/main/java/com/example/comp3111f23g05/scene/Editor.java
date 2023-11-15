@@ -25,6 +25,9 @@ public class Editor {
     private static int initX = -1;
     private static int initY = -1;
     private static boolean inDrag = false;
+
+    private static boolean visited = false;
+
     public static void init(Stage stage) {
         Parent root = null;
         Map map = new Map();
@@ -36,6 +39,16 @@ public class Editor {
         } catch (IOException ignored) {
         }
         gameAreaController controller = loader.getController();
+
+        if (!visited) {
+            visited = true;
+            Alert guide = new Alert(Alert.AlertType.INFORMATION);
+            guide.setTitle("Guide on Map Editor");
+            guide.setHeaderText("Here is how to use the Map Editor");
+            guide.setContentText("1. Click or drag on any block to change its type.\n2. Drag on entry or exit block to change its position.");
+            guide.show();
+        }
+
 
         Button clearMapButton = controller.getFunctionalButton();
         clearMapButton.setText("ClearMap");
@@ -133,12 +146,13 @@ public class Editor {
             Block selected = map.getMap()[y][x];
             if (selected.getType() == BlockType.BARRIER){
                 selected.setType(BlockType.CLEAR);
+                //sound effect
+                AudioManager.getInstance().play(Sound.BLOCK,false);
             } else if (selected.getType() == BlockType.CLEAR) {
                 selected.setType(BlockType.BARRIER);
+                //sound effect
+                AudioManager.getInstance().play(Sound.BLOCK,false);
             }
-
-            //sound effect
-            AudioManager.getInstance().play(Sound.BLOCK,false);
 
         });
 
@@ -182,17 +196,18 @@ public class Editor {
                 Block newPos = map.getMap()[y][x];
                 if (newPos.getType() == BlockType.BOUNDARY) {
 
-                    //sound effect
-                    AudioManager.getInstance().play(Sound.BLOCK, false);
-
                     newPos.setType(initType==BlockType.ENTRY ? BlockType.ENTRY : BlockType.EXIT);
                     initBlock.setType(BlockType.BOUNDARY);
                     initX = x;
                     initY = y;
                     if (initType == BlockType.ENTRY){
                         map.entryPos = new Coordinate(x, y);
+                        //sound effect
+                        AudioManager.getInstance().play(Sound.BLOCK, false);
                     } else {
                         map.exitPos = new Coordinate(x, y);
+                        //sound effect
+                        AudioManager.getInstance().play(Sound.BLOCK, false);
                     }
                 }
 
@@ -200,13 +215,13 @@ public class Editor {
             } else {
                 if (selected.getType() == BlockType.BARRIER) {
                     selected.setType(BlockType.CLEAR);
+                    //sound effect
+                    AudioManager.getInstance().play(Sound.BLOCK, false);
                 } else if (selected.getType() == BlockType.CLEAR) {
                     selected.setType(BlockType.BARRIER);
+                    //sound effect
+                    AudioManager.getInstance().play(Sound.BLOCK, false);
                 }
-
-                //sound effect
-                AudioManager.getInstance().play(Sound.BLOCK, false);
-
             }
         });
 

@@ -80,8 +80,8 @@ public class GameManager {
             }
             if (now - tom.lastMovedTime > tom.MINIMUM_MOVEMENT_INTERVAL) {
                 tom.lastMovedTime = now;
-                Coordinate nextPosition = CalculateShortestPath(map, tom.getCoordinates(), jerry.getCoordinates())[1];
-                tom.move(nextPosition);
+                tom.position = CalculateShortestPath(map, tom.position, jerry.position)[1];
+
             }
             if (now - jerry.lastMovedTime < jerry.MINIMUM_MOVEMENT_INTERVAL || lastInput==null) {
                 return;
@@ -90,7 +90,7 @@ public class GameManager {
             if (map.getMap()[nextPosition.y][nextPosition.x].reachable()) {
                 jerry.lastMovedTime = now;
                 AudioManager.getInstance().play(Sound.JERRY, false);
-                jerry.move(nextPosition);
+                jerry.position = nextPosition;
                 lastInput = null;
             }
 
