@@ -2,19 +2,17 @@ package com.example.comp3111f23g05.manager;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AudioManagerTest {
 
     AudioManager audioManager = AudioManager.getInstance();
     @Test
-    public void BGMTest(){
+    public void BGMTest() throws InterruptedException {
         // all are target functions
-
         // bgm sound, with looping and stop
         audioManager.play(Sound.THEME, true);
-        audioManager.play(Sound.THEME, true);//multiple calls of play() on the same sound
+        audioManager.play(Sound.THEME, true); // multiple calls of play() on the same sound
         audioManager.stop(Sound.THEME);
+        Thread.sleep(1000);
         // call stop() when the sound is not playing
         audioManager.stop(Sound.THEME);
     }

@@ -17,16 +17,8 @@ public class Movables{
         this.image = new Image(getClass().getResourceAsStream(imageName));
     }
 
-    public Coordinate getCoordinates(){
-        return position;
-    }
-
     public void paint(GraphicsContext graphicsContext) {
         final int size = SceneManager.BLOCK_SIZE;
         graphicsContext.drawImage(image, position.x * size, position.y * size, size, size);
-    }
-
-    public void move(Coordinate nextPosition){
-        position = nextPosition;
     }
 }
