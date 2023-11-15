@@ -40,16 +40,6 @@ public class Editor {
         }
         gameAreaController controller = loader.getController();
 
-        if (!visited) {
-            visited = true;
-            Alert guide = new Alert(Alert.AlertType.INFORMATION);
-            guide.setTitle("Guide on Map Editor");
-            guide.setHeaderText("Here is how to use the Map Editor");
-            guide.setContentText("1. Click or drag on any block to change its type.\n2. Drag on entry or exit block to change its position.");
-            guide.show();
-        }
-
-
         Button clearMapButton = controller.getFunctionalButton();
         clearMapButton.setText("ClearMap");
         clearMapButton.setOnAction(actionEvent -> {
@@ -226,5 +216,14 @@ public class Editor {
         });
 
         stage.getScene().setRoot(root);
+
+        if (!visited) {
+//            visited = true;
+            Alert guide = new Alert(Alert.AlertType.INFORMATION);
+            guide.setTitle("Guide on Map Editor");
+            guide.setHeaderText("Here is how to use the Map Editor");
+            guide.setContentText("1. Click or drag on any block to change its type.\n2. Drag on entry or exit block to change its position.");
+            guide.show();
+        }
     }
 }

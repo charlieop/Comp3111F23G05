@@ -39,8 +39,8 @@ public class GameManager {
         this.map = map;
         Coordinate tomPos = new Coordinate(map.exitPos.x, map.exitPos.y);
         Coordinate jerryPos = new Coordinate(map.entryPos.x, map.entryPos.y);
-        long tomTime = (long) (0.3 * Math.pow(10, 9));
-        long jerryTime = (long) (0.4 * Math.pow(10, 9));
+        long tomTime = (long) (0.8 * Math.pow(10, 9));
+        long jerryTime = (long) (0.6 * Math.pow(10, 9));
         tom = new Movables(tomPos, "/images/Tom.png", tomTime);
         jerry = new Movables(jerryPos, "/images/Jerry.gif", jerryTime);
         canvas = new Canvas();
@@ -70,22 +70,34 @@ public class GameManager {
     public class Refresh extends AnimationTimer {
         @Override
         public void handle(long now) {
+
+            // refresh screen and paint jerry and tom
             graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             jerry.paint(graphicsContext);
             tom.paint(graphicsContext);
+
+            // movement for tom
+            if (now - tom.lastMovedTime > tom.MINIMUM_MOVEMENT_INTERVAL) {
+                tom.lastMovedTime = now;
+                tom.MINIMUM_MOVEMENT_INTERVAL -= (long) (0.55 * Math.pow(10, 7));
+                Coordinate[] path = CalculateShortestPath(map, tom.position, jerry.position);
+                if (path.length > 1) {
+                    tom.position = path[1];
+                }
+
+            }
+
+            // check game end
             if (jerry.position.equals(tom.position) || jerry.position.equals(map.exitPos)) {
                 refresh.stop();
                 AudioManager.getInstance().stop(Sound.GAME);
                 SceneManager.getInstance().toGameOver(jerry.position.equals(map.exitPos));
             }
-            if (now - tom.lastMovedTime > tom.MINIMUM_MOVEMENT_INTERVAL) {
-                tom.lastMovedTime = now;
-                tom.position = CalculateShortestPath(map, tom.position, jerry.position)[1];
 
-            }
             if (now - jerry.lastMovedTime < jerry.MINIMUM_MOVEMENT_INTERVAL || lastInput==null) {
                 return;
             }
+
             Coordinate nextPosition = keyCodeProcess(lastInput);
             if (map.getMap()[nextPosition.y][nextPosition.x].reachable()) {
                 jerry.lastMovedTime = now;
