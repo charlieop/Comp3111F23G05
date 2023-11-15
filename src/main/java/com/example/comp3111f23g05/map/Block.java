@@ -68,7 +68,9 @@ public class Block extends StackPane {
                 base.setFill(Color.BLACK);
                 break;
             case HIGHLIGHTED:
-                getChildren().add(new Text("O"));
+                img = new Image(String.valueOf(Game.class.getResource("/images/path.png")));
+                imageView.setImage(img);
+                getChildren().add(imageView);
                 break;
         }
     }
