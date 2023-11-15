@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 import java.util.Random;
 
@@ -41,14 +40,13 @@ public class Block extends StackPane {
             case BARRIER:
                 if (random.nextInt(100) < 7) {
                     img = new Image(String.valueOf(Game.class.getResource("/images/barriers/barrier-" + random.nextInt(6) + ".png")));
-                    imageView.setImage(img);
-                    getChildren().add(imageView);
-                    base.setFill(Color.TRANSPARENT);
                 }
                 else {
-                    base.setFill(Color.GRAY);
-                    getChildren().add(new Text("X"));
+                    img = new Image(String.valueOf(Game.class.getResource("/images/barriers/barrier.png")));
                 }
+                imageView.setImage(img);
+                getChildren().add(imageView);
+                base.setFill(Color.TRANSPARENT);
                 break;
             case CLEAR:
                 base.setFill(Color.TRANSPARENT);
