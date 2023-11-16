@@ -4,16 +4,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class Index {
-    public static void init(Stage stage) {
+    public static void init(Stage stage, String fileName) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(Index.class.getResource("/fxml/index.fxml")));
-        } catch (IOException ignored) {
+            root = FXMLLoader.load(Objects.requireNonNull(Index.class.getResource(fileName)));
+            stage.getScene().setRoot(root);
+        } catch (Exception ignored) {
+            System.out.println("there is an error in the Index Scene");
+            return;
         }
-        stage.getScene().setRoot(root);
     }
 }

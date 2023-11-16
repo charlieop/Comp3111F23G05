@@ -38,10 +38,10 @@ public class SceneManager {
     }
 
     public void toIndex(){
-        Index.init(stage);
+        Index.init(stage, "/fxml/index.fxml");
     }
     public void toEditor(){
-        Editor.init(stage);
+        Editor.init(stage, "/fxml/gameArea.fxml");
     }
     public void toShortestPath(){
         ShortestPath.init(stage);
