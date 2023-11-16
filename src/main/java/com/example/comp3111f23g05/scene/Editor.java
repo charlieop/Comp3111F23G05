@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 
 public class Editor {
-    private static Map curMap;
+    public static Map curMap;
     private static int lastX = -1;
     private static int lastY = -1;
     private static int initX = -1;
@@ -77,11 +77,12 @@ public class Editor {
         Alert clearMap = new Alert(Alert.AlertType.WARNING);
         clearMap.setTitle("About to Clear map...");
         clearMap.setHeaderText("Do you want to clear the map?");
-        clearMap.setContentText("ALL of your progress will be LOST!");
+        clearMap.setContentText("The map will become EMPTY.\nALL of your progress will be LOST!");
         clearMap.getButtonTypes().clear();
         clearMap.getButtonTypes().add(ButtonType.CANCEL);
         clearMap.getButtonTypes().add(ButtonType.YES);
         clearMap.showAndWait().ifPresent(response -> {
+
             if (response.getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
                 return;
             }
@@ -92,6 +93,7 @@ public class Editor {
                     curMap.getMap()[row][col].setType(BlockType.CLEAR);
                 }
             }
+
         });
     }
 
