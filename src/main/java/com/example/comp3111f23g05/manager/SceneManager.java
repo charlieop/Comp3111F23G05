@@ -33,6 +33,8 @@ public class SceneManager {
         stage.setMinWidth(WIDTH);
         toIndex();
         stage.show();
+        stage.requestFocus();
+        stage.toFront();
     }
 
     public void toIndex(){
