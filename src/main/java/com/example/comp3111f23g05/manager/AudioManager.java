@@ -37,7 +37,9 @@ public class AudioManager {
             clip.loop(MAX_LOOP_TIME);
             this.clips[sound.ordinal()] = clip;
 
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("There is an error in playing sound");
+            return;
         }
     }
 
