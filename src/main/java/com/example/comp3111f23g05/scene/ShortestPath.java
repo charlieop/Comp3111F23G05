@@ -41,15 +41,20 @@ public class ShortestPath {
         Button generate = controller.getFunctionalButton();
         generate.setText("Generate CSV");
         generate.setOnAction(actionEvent -> {
-            GeneratePathCSV(CSVName, path);
+            boolean res = GeneratePathCSV(CSVName, path);
 
             //sound effect
             AudioManager.getInstance().play(Sound.ALERT, false);
 
             Alert PathData = new Alert(Alert.AlertType.INFORMATION);
             PathData.setTitle("Generate Path Data CSV");
-            PathData.setHeaderText("CSV file is successfully generated.");
-            PathData.setContentText("Please find it at: /target/classes/ShortestPathData.csv");
+            if(res){
+                PathData.setHeaderText("CSV file is successfully generated.");
+                PathData.setContentText("Please find it at: /target/classes/ShortestPathData.csv");
+            }
+            else {
+                PathData.setHeaderText("Fail to generate CSV file!");
+            }
             PathData.getButtonTypes().clear();
             PathData.getButtonTypes().add(ButtonType.OK);
             PathData.showAndWait();
@@ -61,7 +66,7 @@ public class ShortestPath {
         stage.getScene().setRoot(root);
     }
 
-    private static void GeneratePathCSV(String fileName, Coordinate[] ShortestPath){
+    private static boolean GeneratePathCSV(String fileName, Coordinate[] ShortestPath){
         URL res = ShortestPath.class.getClassLoader().getResource(fileName);
         String FilePath = null;
         try {
@@ -84,8 +89,9 @@ public class ShortestPath {
             writer.close();
         } catch (Exception ignored) {
             System.out.println("There is an error when generating PathCSV.");
-            return;
+            return false;
         }
+        return true;
     }
 
 }
