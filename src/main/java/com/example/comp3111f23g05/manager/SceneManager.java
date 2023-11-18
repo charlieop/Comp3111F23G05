@@ -49,8 +49,8 @@ public class SceneManager {
     public void toGame(){
         Game.init(stage);
     }
-    public void toGameOver(boolean isWiner){
-        GameOver.init(stage, isWiner);
+    public void toGameOver(boolean isWinner){
+        GameOver.init(stage, "/fxml/gameArea.fxml", isWinner);
     }
 
 }
