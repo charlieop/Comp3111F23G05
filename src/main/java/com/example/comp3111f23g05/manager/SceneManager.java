@@ -44,7 +44,7 @@ public class SceneManager {
         Editor.init(stage, "/fxml/gameArea.fxml");
     }
     public void toShortestPath(){
-        ShortestPath.init(stage);
+        ShortestPath.init(stage,"/fxml/gameArea.fxml", "ShortestPathData.csv" );
     }
     public void toGame(){
         Game.init(stage);

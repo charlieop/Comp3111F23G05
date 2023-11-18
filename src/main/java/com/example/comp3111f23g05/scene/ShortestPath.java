@@ -24,22 +24,24 @@ import java.net.URL;
 
 public class ShortestPath {
     private static final int MAX_CSV_ROW = 10;
-    public static void init(Stage stage) {
+    public static void init(Stage stage, String fxmlName, String CSVName) {
         Parent root = null;
         Map map = new Map();
         Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.entryPos, map.exitPos);
         MapGUI gui = new MapGUI(map, path);
-        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource("/fxml/gameArea.fxml"));
+        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource(fxmlName));
         try {
             root = loader.load();
-        } catch (IOException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("There is an error in the ShortestPath Scene.");
+            return;
         }
         gameAreaController controller = loader.getController();
 
         Button generate = controller.getFunctionalButton();
         generate.setText("Generate CSV");
         generate.setOnAction(actionEvent -> {
-            GeneratePathCSV("ShortestPathData.csv", path);
+            GeneratePathCSV(CSVName, path);
 
             //sound effect
             AudioManager.getInstance().play(Sound.ALERT, false);
@@ -61,9 +63,6 @@ public class ShortestPath {
 
     private static void GeneratePathCSV(String fileName, Coordinate[] ShortestPath){
         URL res = ShortestPath.class.getClassLoader().getResource(fileName);
-        if (res == null) {
-            System.out.println("can not find file named: " + fileName);
-        }
         String FilePath = null;
         try {
             assert res != null;
@@ -83,7 +82,9 @@ public class ShortestPath {
             BufferedWriter writer = new BufferedWriter(new FileWriter(FilePath));
             writer.write(str);
             writer.close();
-        } catch (IOException | URISyntaxException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("There is an error when generating PathCSV.");
+            return;
         }
     }
 
