@@ -11,7 +11,7 @@ class CalculateShortestPathTest {
 
     //Specification
     // There are two methods that are responsible to find the shortest path,
-    // they have the same name, ClaculateShortestPath(), but different accessibility and parameter list.
+    // they have the same name, CalculateShortestPath(), but different accessibility and parameter list.
     // This design is to enable the usage of a array that can be kept updating in the recursive calls.
     // The public one is served as an interface for method calling,
     // and the private one is main method to find the path.
@@ -23,27 +23,30 @@ class CalculateShortestPathTest {
         // all four are target functions
 
         //Boundary cases
-        Coordinate[] noPath = gameManager.CalculateShortestPath(map, new Coordinate(0, 12), new Coordinate(4, 1));
+        Coordinate[] noPath = gameManager.CalculateShortestPath(map, new Coordinate(7, 5), new Coordinate(6, 1));
         assertEquals(0, noPath.length);
-        Coordinate[] path1 = gameManager.CalculateShortestPath(map, new Coordinate(0, 12), new Coordinate(0, 12));
+        Coordinate[] path1 = gameManager.CalculateShortestPath(map, new Coordinate(1, 4), new Coordinate(1, 4));
         assertEquals(1, path1.length);
         //invalid start and end
-        Coordinate[] BarrierStart = gameManager.CalculateShortestPath(map, new Coordinate(0, 11), new Coordinate(0, 12));
+        Coordinate[] BarrierStart = gameManager.CalculateShortestPath(map, new Coordinate(2, 5), new Coordinate(2, 8));
         assertEquals(0, BarrierStart.length);
-        Coordinate[] BarrierEnd = gameManager.CalculateShortestPath(map, new Coordinate(0, 12), new Coordinate(4, 15));
+        Coordinate[] BarrierEnd = gameManager.CalculateShortestPath(map, new Coordinate(28, 1), new Coordinate(25, 2));
         assertEquals(0, BarrierEnd.length);
 
     }
 
     @Test
     void TypicalTestCase() {
-        Coordinate[] randomPath1 = gameManager.CalculateShortestPath(map, new Coordinate(7, 1), new Coordinate(6, 16));
-        assertEquals(23, randomPath1.length);
-        Coordinate[] randomPath2 = gameManager.CalculateShortestPath(map, new Coordinate(8, 28), new Coordinate(20, 28));
-        assertEquals(49, randomPath2.length);
+        Coordinate[] randomPath1 = gameManager.CalculateShortestPath(map, new Coordinate(15, 7), new Coordinate(6, 16));
+        assertEquals(19, randomPath1.length);
+
+        Coordinate[] randomPath2 = gameManager.CalculateShortestPath(map, new Coordinate(15, 28), new Coordinate(28, 1));
+        assertEquals(51, randomPath2.length);
+
         Coordinate[] randomPath3 = gameManager.CalculateShortestPath(map, new Coordinate(4, 16), new Coordinate(26, 13));
-        assertEquals(46, randomPath3.length);
+        assertEquals(34, randomPath3.length);
+
         Coordinate[] EntryToExit = gameManager.CalculateShortestPath(map, map.entryPos, map.exitPos);
-        assertEquals(56, EntryToExit.length);
+        assertEquals(61, EntryToExit.length);
     }
 }
