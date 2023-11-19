@@ -44,14 +44,14 @@ public class ShortestPathSceneTest extends ApplicationTest {
         SceneManager.getInstance().toShortestPath();
         clickOn("Generate CSV"); // target function
         sleep(300);
-        clickOn("OK");
+        clickOn("OK"); // target function
         sleep(300);
 
         //invalid CSVName
         ShortestPath.init(stage, "/fxml/gameArea.fxml", "");
         clickOn("Generate CSV"); // target function
         sleep(300);
-        clickOn("OK");
+        clickOn("OK"); // target function
         sleep(300);
     }
 
