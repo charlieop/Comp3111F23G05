@@ -1,6 +1,8 @@
 package com.example.comp3111f23g05.scene;
 
+import com.example.comp3111f23g05.manager.AudioManager;
 import com.example.comp3111f23g05.manager.SceneManager;
+import com.example.comp3111f23g05.manager.Sound;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.junit.FixMethodOrder;
@@ -43,14 +45,14 @@ public class ShortestPathSceneTest extends ApplicationTest {
         //valid
         SceneManager.getInstance().toShortestPath();
         clickOn("Generate CSV"); // target function
-        sleep(300);
+        sleep(1000);
         clickOn("OK"); // target function
         sleep(300);
 
         //invalid CSVName
         ShortestPath.init(stage, "/fxml/gameArea.fxml", "");
         clickOn("Generate CSV"); // target function
-        sleep(300);
+        sleep(1000);
         clickOn("OK"); // target function
         sleep(300);
     }
