@@ -19,6 +19,8 @@ import java.io.IOException;
 
 public class GameOver {
     public static void init(Stage stage, String fxmlName ,boolean isWinner) {
+        AudioManager.getInstance().stop(Sound.GAME);
+        AudioManager.getInstance().stop(Sound.THEME);
 
         if(isWinner){
             AudioManager.getInstance().play(Sound.VICTORY, false);
