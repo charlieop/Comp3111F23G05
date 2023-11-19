@@ -159,15 +159,17 @@ public class Editor {
         }
         inDrag = false;
 
-        Block selected = curMap.getMap()[y][x];
-        if (selected.getType() == BlockType.BARRIER){
-            selected.setType(BlockType.CLEAR);
-            //sound effect
-            AudioManager.getInstance().play(Sound.BLOCK,false);
-        } else if (selected.getType() == BlockType.CLEAR) {
-            selected.setType(BlockType.BARRIER);
-            //sound effect
-            AudioManager.getInstance().play(Sound.BLOCK,false);
+        if (Coordinate.checkX(x) && Coordinate.checkY(y)) {
+            Block selected = curMap.getMap()[y][x];
+            if (selected.getType() == BlockType.BARRIER){
+                selected.setType(BlockType.CLEAR);
+                //sound effect
+                AudioManager.getInstance().play(Sound.BLOCK,false);
+            } else if (selected.getType() == BlockType.CLEAR) {
+                selected.setType(BlockType.BARRIER);
+                //sound effect
+                AudioManager.getInstance().play(Sound.BLOCK,false);
+            }
         }
     }
 

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class SceneManager {
     public static final int BLOCK_SIZE = 20;
-    public static final int WIDTH = Math.max(900, BLOCK_SIZE * Map.MAP_SIZE);
+    public static final int WIDTH = Math.max(900, BLOCK_SIZE * Map.MAP_SIZE + 300);
     public static final int HEIGHT = Math.max(600, BLOCK_SIZE * Map.MAP_SIZE);
     private static final SceneManager instance = new SceneManager();
 
