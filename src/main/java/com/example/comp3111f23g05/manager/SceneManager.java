@@ -44,13 +44,13 @@ public class SceneManager {
         Editor.init(stage, "/fxml/gameArea.fxml");
     }
     public void toShortestPath(){
-        ShortestPath.init(stage);
+        ShortestPath.init(stage,"/fxml/gameArea.fxml", "ShortestPathData.csv" );
     }
     public void toGame(){
         Game.init(stage);
     }
-    public void toGameOver(boolean isWiner){
-        GameOver.init(stage, isWiner);
+    public void toGameOver(boolean isWinner){
+        GameOver.init(stage, "/fxml/gameArea.fxml", isWinner);
     }
 
 }

@@ -18,7 +18,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameOver {
-    public static void init(Stage stage, boolean isWinner) {
+    public static void init(Stage stage, String fxmlName ,boolean isWinner) {
+        AudioManager.getInstance().stop(Sound.GAME);
+        AudioManager.getInstance().stop(Sound.THEME);
 
         if(isWinner){
             AudioManager.getInstance().play(Sound.VICTORY, false);
@@ -31,10 +33,12 @@ public class GameOver {
         Map map = new Map();
         Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.entryPos, map.exitPos);
         MapGUI gui = new MapGUI(map, path);
-        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource("/fxml/gameArea.fxml"));
+        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource(fxmlName));
         try {
             root = loader.load();
-        } catch (IOException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("There is an error in the GameOver Scene");
+            return;
         }
         gameAreaController controller = loader.getController();
 

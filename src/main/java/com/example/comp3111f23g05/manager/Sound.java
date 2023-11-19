@@ -9,7 +9,8 @@ public enum Sound {
         GAME("/sounds/gameSong.wav"),
         JERRY("/sounds/Jerry.wav"),
         VICTORY( "/sounds/victory.wav"),
-        FAILURE("/sounds/failure.wav");
+        FAILURE("/sounds/failure.wav"),
+        INVALID_TEST("");
 
         public final String url;
          Sound(String url) {

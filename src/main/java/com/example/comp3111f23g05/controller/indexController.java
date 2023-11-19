@@ -34,8 +34,6 @@ public class indexController {
     void mouseClickedStartGame(MouseEvent event) {
         AudioManager.getInstance().play(Sound.DONE, false);
         SceneManager.getInstance().toGame();
-        AudioManager.getInstance().stop(Sound.THEME);
-        AudioManager.getInstance().play(Sound.GAME,true);
     }
 
     @FXML

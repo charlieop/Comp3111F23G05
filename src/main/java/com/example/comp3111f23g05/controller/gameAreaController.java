@@ -37,8 +37,6 @@ public class gameAreaController {
 
     @FXML
     void returnHomeButtonPressed(ActionEvent event) {
-        AudioManager.getInstance().stop(Sound.GAME);
-        AudioManager.getInstance().play(Sound.THEME,true);
         SceneManager.getInstance().toIndex();
     }
 }

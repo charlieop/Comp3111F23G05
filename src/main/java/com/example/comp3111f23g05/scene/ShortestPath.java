@@ -24,30 +24,37 @@ import java.net.URL;
 
 public class ShortestPath {
     private static final int MAX_CSV_ROW = 10;
-    public static void init(Stage stage) {
+    public static void init(Stage stage, String fxmlName, String CSVName) {
         Parent root = null;
         Map map = new Map();
         Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.entryPos, map.exitPos);
         MapGUI gui = new MapGUI(map, path);
-        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource("/fxml/gameArea.fxml"));
+        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource(fxmlName));
         try {
             root = loader.load();
-        } catch (IOException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("There is an error in the ShortestPath Scene.");
+            return;
         }
         gameAreaController controller = loader.getController();
 
         Button generate = controller.getFunctionalButton();
         generate.setText("Generate CSV");
         generate.setOnAction(actionEvent -> {
-            GeneratePathCSV("ShortestPathData.csv", path);
+            boolean res = GeneratePathCSV(CSVName, path);
 
             //sound effect
             AudioManager.getInstance().play(Sound.ALERT, false);
 
             Alert PathData = new Alert(Alert.AlertType.INFORMATION);
             PathData.setTitle("Generate Path Data CSV");
-            PathData.setHeaderText("CSV file is successfully generated.");
-            PathData.setContentText("Please find it at: /target/classes/ShortestPathData.csv");
+            if(res){
+                PathData.setHeaderText("CSV file is successfully generated.");
+                PathData.setContentText("Please find it at: /target/classes/ShortestPathData.csv");
+            }
+            else {
+                PathData.setHeaderText("Fail to generate CSV file!");
+            }
             PathData.getButtonTypes().clear();
             PathData.getButtonTypes().add(ButtonType.OK);
             PathData.showAndWait();
@@ -59,11 +66,8 @@ public class ShortestPath {
         stage.getScene().setRoot(root);
     }
 
-    private static void GeneratePathCSV(String fileName, Coordinate[] ShortestPath){
+    private static boolean GeneratePathCSV(String fileName, Coordinate[] ShortestPath){
         URL res = ShortestPath.class.getClassLoader().getResource(fileName);
-        if (res == null) {
-            System.out.println("can not find file named: " + fileName);
-        }
         String FilePath = null;
         try {
             assert res != null;
@@ -83,8 +87,11 @@ public class ShortestPath {
             BufferedWriter writer = new BufferedWriter(new FileWriter(FilePath));
             writer.write(str);
             writer.close();
-        } catch (IOException | URISyntaxException ignored) {
+        } catch (Exception ignored) {
+            System.out.println("There is an error when generating PathCSV.");
+            return false;
         }
+        return true;
     }
 
 }

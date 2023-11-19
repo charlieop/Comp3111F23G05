@@ -25,10 +25,12 @@ public class indexControllerTest extends ApplicationTest {
     }
     @Test
     public void mouseClickedMapCustomizationTest() {
-        Platform.runLater(() -> {
-            SceneManager.getInstance().toIndex();
-            clickOn("Edit Map"); // target function
-        });
+//        Platform.runLater(() -> {
+//            SceneManager.getInstance().toIndex();
+//            clickOn("Edit Map"); // target function
+//        });
+        SceneManager.getInstance().toIndex();
+        clickOn("Edit Map"); // target function
     }
     @Test
     public void mouseEnteredShortestPathTest() {
@@ -39,10 +41,12 @@ public class indexControllerTest extends ApplicationTest {
     }
     @Test
     public void mouseCLickedShortestPathTest() {
-        Platform.runLater(() -> {
-            SceneManager.getInstance().toIndex();
-            clickOn("Display Shortest Path"); // target function
-        });
+//        Platform.runLater(() -> {
+//            SceneManager.getInstance().toIndex();
+//            clickOn("Display Shortest Path"); // target function
+//        });
+        SceneManager.getInstance().toIndex();
+        clickOn("Display Shortest Path"); // target function
     }
     @Test
     public void mouseEnteredStartGameTest() {
@@ -53,9 +57,11 @@ public class indexControllerTest extends ApplicationTest {
     }
     @Test
     public void mouseClickedStartGameTest() {
-        Platform.runLater(() -> {
-            SceneManager.getInstance().toIndex();
-            clickOn("Start Game"); // target function
-        });
+//        Platform.runLater(() -> {
+//            SceneManager.getInstance().toIndex();
+//            clickOn("Start Game"); // target function
+//        });
+        SceneManager.getInstance().toIndex();
+        clickOn("Start Game"); // target function
     }
 }

@@ -62,6 +62,7 @@ public class Editor {
 
         if (!visited) {
             visited = true;
+            AudioManager.getInstance().play(Sound.ALERT, false);
             Alert guide = new Alert(Alert.AlertType.INFORMATION);
             guide.setTitle("Guide on Map Editor");
             guide.setHeaderText("Here is how to use the Map Editor");

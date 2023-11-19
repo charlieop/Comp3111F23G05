@@ -21,6 +21,8 @@ import java.io.IOException;
 
 public class Game {
     public static void init(Stage stage) {
+        AudioManager.getInstance().stop(Sound.THEME);
+        AudioManager.getInstance().play(Sound.GAME,true);
         Parent root = null;
         Map map = new Map();
         MapGUI gui = new MapGUI(map, new Coordinate[0]);
@@ -39,7 +41,6 @@ public class Game {
         home.setOnAction(actionEvent -> {
             GameManager.getInstance().refresh.stop();
             AudioManager.getInstance().stop(Sound.GAME);
-            AudioManager.getInstance().play(Sound.THEME, true);
             SceneManager.getInstance().toIndex();
         });
 
