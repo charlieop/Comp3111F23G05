@@ -27,9 +27,10 @@ public class GameOverSceneTest extends ApplicationTest {
     public void initTest() {
         // valid fxml
         GameOver.init(stage,"/fxml/gameArea.fxml", true); // target function
+        sleep(2000);
 
         GameOver.init(stage, "/fxml/gameArea.fxml",false); // target function
-
+        sleep(2000);
         // invalid fxml
         GameOver.init(stage, "",false); // target function
     }
