@@ -11,15 +11,13 @@ import org.testfx.framework.junit.ApplicationTest;
 import static org.junit.jupiter.api.Assertions.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class gameAreaControllerTest extends ApplicationTest {
-
-    gameAreaController controller = new gameAreaController();
     @Override
     public void start(Stage stage) {
-        // Create a simple JavaFX application with a button
         SceneManager.getInstance().init(stage);
     }
     @Test
     public void accessorTest(){
+        gameAreaController controller = new gameAreaController();
         controller.getBackground(); // target function
         controller.getMapArea(); // target function
         controller.getFunctionalButton(); // target function
@@ -28,32 +26,22 @@ public class gameAreaControllerTest extends ApplicationTest {
 
     @Test
     public void homeButtonTest(){
-        Platform.runLater(() -> {
-            SceneManager.getInstance().toGame();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            clickOn("Home");// target function
-            sleep(300);
 
-            SceneManager.getInstance().toShortestPath();
-            sleep(300);
-            clickOn("Home");// target function
-            sleep(300);
+        // "Home" button in Editor scene is override, tested under EditorTest
 
-            SceneManager.getInstance().toEditor();
-            SceneManager.getInstance().toEditor();
-            sleep(300);
-            clickOn("Home");// target function
-            sleep(300);
+        // "Home" button in Game scene is override, tested under GameSceneTest
 
-            SceneManager.getInstance().toGameOver(true);
-            sleep(300);
-            clickOn("Home");// target function
-            sleep(300);
-        });
+        // "Home" button in ShortestPath scene
+        SceneManager.getInstance().toShortestPath();
+        sleep(300);
+        clickOn("Home");// target function
+        sleep(300);
+
+        //"Home" button in GameOver scene
+        SceneManager.getInstance().toGameOver(true);
+        sleep(2000);
+        clickOn("Home");// target function
+        sleep(300);
 
     }
 
