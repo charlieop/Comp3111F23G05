@@ -31,6 +31,8 @@ public class Map {
                 rowNum++;
             }
         } catch (IOException ignored) {
+            System.out.println("There is an error in the loadMap");
+            return;
         }
     }
 
@@ -57,7 +59,6 @@ public class Map {
                 break;
             default:
                 newBlock = new Block(BlockType.CLEAR);
-
         }
         mapData[row][col] = newBlock;
     }
@@ -79,6 +80,8 @@ public class Map {
                 writer.close();
             }
         } catch (URISyntaxException | IOException ignored) {
+            System.out.println("There is an error in the saveMap");
+            return;
         }
     }
 }
