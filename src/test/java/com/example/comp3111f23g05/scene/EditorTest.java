@@ -39,13 +39,6 @@ public class EditorTest extends ApplicationTest {
         });
     }
 
-//    @Test
-//    public void clearMapTest() {
-//        Platform.runLater(() -> {
-//            clickOn("ClearMap"); // target function
-//        });
-//    }
-
     @Test
     public void clearMapAlertTest() {
         clickOn("ClearMap");
@@ -56,11 +49,6 @@ public class EditorTest extends ApplicationTest {
         sleep(300);
         clickOn("Yes"); // target function
     }
-
-//    @Test
-//    public void returnHomeTest() {
-//        clickOn("Home"); // target function
-//    }
 
     @Test
     public void returnHomeAlertTest() {
