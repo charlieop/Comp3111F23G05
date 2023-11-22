@@ -2,11 +2,12 @@ package com.example.comp3111f23g05.manager;
 
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import org.testfx.framework.junit.ApplicationTest;
 
-class CalculateShortestPathTest {
-    Map map = new Map();
+import static org.junit.Assert.*;
+
+public class CalculateShortestPathTest extends ApplicationTest {
     GameManager gameManager = GameManager.getInstance();
 
     //Specification
@@ -18,8 +19,8 @@ class CalculateShortestPathTest {
     // Since they are closely related and responsible for the same functionality, we test they as a whole
 
     @Test
-    void SpecialTestCase() {
-
+    public void SpecialTestCase() {
+        Map map = new Map();
         // all four are target functions
 
         //Boundary cases
@@ -36,7 +37,9 @@ class CalculateShortestPathTest {
     }
 
     @Test
-    void TypicalTestCase() {
+    public void TypicalTestCase() {
+        Map map = new Map();
+
         Coordinate[] randomPath1 = gameManager.CalculateShortestPath(map, new Coordinate(15, 7), new Coordinate(6, 16));
         assertEquals(19, randomPath1.length);
 
