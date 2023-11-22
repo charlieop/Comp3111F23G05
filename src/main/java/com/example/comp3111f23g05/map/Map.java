@@ -10,13 +10,13 @@ public class Map {
     public Coordinate entryPos;
     public Coordinate exitPos;
 
-    public Map() {
+    public Map(String fileName) {
         mapData = new Block[30][30];
-        loadMap();
+        loadMap(fileName);
     }
 
-    private void loadMap() {
-        URL res = getClass().getClassLoader().getResource("MazeMap.csv");
+    private void loadMap(String fileName) {
+        URL res = getClass().getClassLoader().getResource(fileName);
         try {
             assert res != null;
             BufferedReader reader = new BufferedReader(new InputStreamReader(res.openStream()));
@@ -30,7 +30,7 @@ public class Map {
                 }
                 rowNum++;
             }
-        } catch (IOException ignored) {
+        } catch (Exception ignored) {
             System.out.println("There is an error in the loadMap");
             return;
         }

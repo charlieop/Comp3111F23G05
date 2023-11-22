@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MapGUITest {
-    Map map = new Map();
+    Map map = new Map("MazeMap.csv");
     Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.entryPos, map.exitPos);
     @Test
     void constructorTest() {

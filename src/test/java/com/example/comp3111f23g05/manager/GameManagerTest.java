@@ -13,7 +13,7 @@ public class GameManagerTest extends ApplicationTest {
     @Override
     public void start(javafx.stage.Stage stage) {
         rootTest = new AnchorPane();
-        mapTest = new Map(); // You may need to create a test map instance with proper data
+        mapTest = new Map("MazeMap.csv"); // You may need to create a test map instance with proper data
     }
 
     @Test

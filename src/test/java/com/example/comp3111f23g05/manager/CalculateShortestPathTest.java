@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculateShortestPathTest {
-    Map map = new Map();
-    GameManager gameManager = GameManager.getInstance();
+
 
     //Specification
     // There are two methods that are responsible to find the shortest path,
@@ -19,6 +18,8 @@ class CalculateShortestPathTest {
 
     @Test
     void SpecialTestCase() {
+        Map map = new Map("MazeMap.csv");
+        GameManager gameManager = GameManager.getInstance();
 
         // all four are target functions
 
@@ -37,6 +38,9 @@ class CalculateShortestPathTest {
 
     @Test
     void TypicalTestCase() {
+        Map map = new Map("MazeMap.csv");
+        GameManager gameManager = GameManager.getInstance();
+
         Coordinate[] randomPath1 = gameManager.CalculateShortestPath(map, new Coordinate(15, 7), new Coordinate(6, 16));
         assertEquals(19, randomPath1.length);
 

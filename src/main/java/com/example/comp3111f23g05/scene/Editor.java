@@ -30,7 +30,7 @@ public class Editor {
 
     public static void init(Stage stage, String fileName) {
         Parent root = null;
-        Map map = new Map();
+        Map map = new Map("MazeMap.csv");
         curMap = map;
         MapGUI gui = new MapGUI(map, new Coordinate[0]);
         FXMLLoader loader = new FXMLLoader(Editor.class.getResource(fileName));
