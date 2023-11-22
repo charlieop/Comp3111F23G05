@@ -13,7 +13,7 @@ public class MapTest extends ApplicationTest {
         // the choice of making them as separated methods is for easier to understand
 
         Map myMap = new Map("MazeMap.csv"); // target function
-        Map errorMap = new Map(""); //target function
+        Map errorMap = new Map("jjh"); //target function
         // note that this also includes the code coverage for private method loadMap()
         // since loadMap() is a private helper method to load map data into the object's attribute Block[][]
         //
@@ -35,7 +35,7 @@ public class MapTest extends ApplicationTest {
     public void saveMapTest() {
         Map myMap = new Map("MazeMap.csv");
         myMap.saveMap("MazeMap.csv"); // target function
-        myMap.saveMap("");//target function
+        myMap.saveMap("sbsb");//target function
 
     }
 

@@ -18,7 +18,9 @@ public class Map {
     private void loadMap(String fileName) {
         URL res = getClass().getClassLoader().getResource(fileName);
         try {
-            assert res != null;
+            if (res == null) {
+                throw new RuntimeException("file not found");
+            }
             BufferedReader reader = new BufferedReader(new InputStreamReader(res.openStream()));
             String row;
             int rowNum = 0;
@@ -66,8 +68,10 @@ public class Map {
     public void saveMap(String fileName) {
         URL res = getClass().getClassLoader().getResource(fileName);
         String path = null;
-        assert res != null;
         try {
+            if (res == null) {
+                throw new RuntimeException("file not found");
+            }
             path = new File(res.toURI()).getAbsolutePath();
             String str = "";
             for (Block[] row : mapData) {
