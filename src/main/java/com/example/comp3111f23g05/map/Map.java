@@ -1,7 +1,6 @@
 package com.example.comp3111f23g05.map;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
@@ -32,11 +31,21 @@ public class Map {
 
 
 
+    /**
+     * Creates a new Map object with the specified file name.
+     *
+     * @param fileName The name of the file to load the map from.
+     */
     public Map(String fileName) {
         mapData = new Block[30][30];
         loadMap(fileName);
     }
 
+    /**
+     * Loads the map data from the specified file.
+     *
+     * @param fileName The name of the file to load the map from.
+     */
     private void loadMap(String fileName) {
         URL res = getClass().getClassLoader().getResource(fileName);
         try {
@@ -100,6 +109,11 @@ public class Map {
     }
 
 
+    /**
+     * Saves the map data to the specified file.
+     *
+     * @param fileName The name of the file to save the map to.
+     */
     public void saveMap(String fileName) {
         URL res = getClass().getClassLoader().getResource(fileName);
         String path = null;
