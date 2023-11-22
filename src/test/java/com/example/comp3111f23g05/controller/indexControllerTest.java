@@ -6,8 +6,6 @@ import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class indexControllerTest extends ApplicationTest {
 
     @Override
@@ -25,10 +23,6 @@ public class indexControllerTest extends ApplicationTest {
     }
     @Test
     public void mouseClickedMapCustomizationTest() {
-//        Platform.runLater(() -> {
-//            SceneManager.getInstance().toIndex();
-//            clickOn("Edit Map"); // target function
-//        });
         SceneManager.getInstance().toIndex();
         clickOn("Edit Map"); // target function
     }
@@ -41,10 +35,6 @@ public class indexControllerTest extends ApplicationTest {
     }
     @Test
     public void mouseCLickedShortestPathTest() {
-//        Platform.runLater(() -> {
-//            SceneManager.getInstance().toIndex();
-//            clickOn("Display Shortest Path"); // target function
-//        });
         SceneManager.getInstance().toIndex();
         clickOn("Display Shortest Path"); // target function
     }
@@ -57,10 +47,6 @@ public class indexControllerTest extends ApplicationTest {
     }
     @Test
     public void mouseClickedStartGameTest() {
-//        Platform.runLater(() -> {
-//            SceneManager.getInstance().toIndex();
-//            clickOn("Start Game"); // target function
-//        });
         SceneManager.getInstance().toIndex();
         clickOn("Start Game"); // target function
     }

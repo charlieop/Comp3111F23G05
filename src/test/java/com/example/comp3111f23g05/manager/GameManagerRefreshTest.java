@@ -9,7 +9,6 @@ public class GameManagerRefreshTest extends ApplicationTest {
     public void start(javafx.stage.Stage stage) {
         SceneManager.getInstance().init(stage);
     }
-
     @Test
     public void HandelInputTest() {
         SceneManager.getInstance().toGame();
