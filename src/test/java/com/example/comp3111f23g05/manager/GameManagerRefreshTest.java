@@ -27,51 +27,26 @@ public class GameManagerRefreshTest extends ApplicationTest {
         press(KeyCode.D);
         sleep(100);
         release(KeyCode.D);
-        sleep(500);
+        sleep(500); // target function
 
         press(KeyCode.W);
         sleep(100);
         release(KeyCode.W);
-        sleep(500);
-
-        press(KeyCode.W);
-        sleep(100);
-        release(KeyCode.W);
-        sleep(500);
+        sleep(500); // target function
 
         press(KeyCode.S);
         sleep(100);
         release(KeyCode.S);
-        sleep(500);
+        sleep(500); // target function
 
-        press(KeyCode.D);
+        press(KeyCode.A);
         sleep(100);
-        release(KeyCode.D);
-        sleep(500);
+        release(KeyCode.A);
+        sleep(500); // target function
 
-        press(KeyCode.D);
+        press(KeyCode.A);
         sleep(100);
-        release(KeyCode.D);
-        sleep(500);
-
-        press(KeyCode.D);
-        sleep(100);
-        release(KeyCode.D);
-        sleep(500);
-
-        press(KeyCode.D);
-        sleep(100);
-        release(KeyCode.D);
-        sleep(500);
-
-        press(KeyCode.S);
-        sleep(100);
-        release(KeyCode.S);
-        sleep(500);
-
-        press(KeyCode.W);
-        sleep(100);
-        release(KeyCode.W);
+        release(KeyCode.A);
         sleep(500);
 
         press(KeyCode.A);
@@ -79,6 +54,15 @@ public class GameManagerRefreshTest extends ApplicationTest {
         release(KeyCode.A);
         sleep(500);
 
+        press(KeyCode.A);
+        sleep(100);
+        release(KeyCode.A);
+        sleep(500);
+
+        press(KeyCode.D);
+        sleep(100);
+        release(KeyCode.D);
+        sleep(500);
 
         sleep(30000);
     }

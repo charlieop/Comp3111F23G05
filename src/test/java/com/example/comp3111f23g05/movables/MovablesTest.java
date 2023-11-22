@@ -7,8 +7,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class MovablesTest {
     Coordinate position = new Coordinate(0, 0);
     String imgNameTest = "/images/Jerry.gif";
@@ -27,6 +25,6 @@ public class MovablesTest {
         canvasTest.setWidth(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         canvasTest.setHeight(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         GraphicsContext graphicsContextTest = canvasTest.getGraphicsContext2D();
-        jerryTest.paint(graphicsContextTest); // target function
+        jerryTest.paint(graphicsContextTest); // target functionwsa
     }
 }
