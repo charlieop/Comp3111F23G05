@@ -60,7 +60,7 @@ public class Game {
 
         StackPane stack = controller.getMapArea();
         stack.getChildren().add(gui);
-        Canvas canvas = GameManager.getInstance().getCanvas();
+        Canvas canvas = GameManager.getInstance().canvas;
         stack.getChildren().add(canvas);
         stage.getScene().setRoot(root);
     }

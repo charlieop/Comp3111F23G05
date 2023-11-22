@@ -30,11 +30,8 @@ public class GameManager {
         return instance;
     }
 
-    private Canvas canvas;
+    public Canvas canvas;
 
-    public Canvas getCanvas() {
-        return canvas;
-    }
     private Movables tom;
     private Movables jerry;
 

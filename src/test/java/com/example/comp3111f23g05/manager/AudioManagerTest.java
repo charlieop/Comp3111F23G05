@@ -5,6 +5,12 @@ import org.junit.jupiter.api.Test;
 class AudioManagerTest {
 
     AudioManager audioManager = AudioManager.getInstance();
+
+    @Test
+    public void getInstanceTest(){
+        AudioManager.getInstance();
+    }
+
     @Test
     public void StopTest() throws InterruptedException {
         // call stop() when haven't play a sound
