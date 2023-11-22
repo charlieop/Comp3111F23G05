@@ -17,19 +17,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Game {
-    public static void init(Stage stage) {
+    public static void init(Stage stage, String fileName) {
         AudioManager.getInstance().stop(Sound.THEME);
         AudioManager.getInstance().play(Sound.GAME,true);
         Parent root = null;
         Map map = new Map();
         MapGUI gui = new MapGUI(map, new Coordinate[0]);
-        FXMLLoader loader = new FXMLLoader(Game.class.getResource("/fxml/gameArea.fxml"));
+        FXMLLoader loader = new FXMLLoader(Game.class.getResource(fileName));
         try {
             root = loader.load();
-        } catch (IOException ignored) {
+        } catch (Exception ignored) {
+            return;
         }
         GameManager.getInstance().init(root, map);
         gameAreaController controller = loader.getController();

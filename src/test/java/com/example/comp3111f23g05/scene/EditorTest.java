@@ -12,6 +12,12 @@ import org.junit.runners.MethodSorters;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.framework.junit.TestFXRule;
 
+
+// Please Note that this test case should be run as a whole
+// Separately run each test function may cause unexpected error
+// If separate test is required, please go to /src/main/java/com.example.comp3111f23g05/scene/editor
+// and set static variable "visited" to "true"
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EditorTest extends ApplicationTest {
     Stage stage;

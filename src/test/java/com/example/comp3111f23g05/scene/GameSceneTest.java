@@ -8,8 +8,6 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.framework.junit.TestFXRule;
-
-import static org.junit.jupiter.api.Assertions.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GameSceneTest extends ApplicationTest {
     Stage stage;
@@ -21,6 +19,13 @@ public class GameSceneTest extends ApplicationTest {
 
     @Rule
     public TestFXRule testFXRule = new TestFXRule();
+
+    @Test
+    public void InitTest(){
+        Game.init(stage, "/fxml/gameArea.fxml");
+        Game.init(stage, "");
+
+    }
 
     @Test
     public void ReturnHomeTest(){
