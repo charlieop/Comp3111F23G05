@@ -18,18 +18,23 @@ import javafx.stage.Stage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 public class ShortestPath {
     private static final int MAX_CSV_ROW = 10;
-    public static void init(Stage stage, String fxmlName, String CSVName) {
+    /**
+     * Initializes the map editor with the specified stage and file name.
+     *
+     * @param stage     The primary stage of the JavaFX application.
+     * @param fileName  The name of the FXML file for the scene.
+     * @param CSVName   The name of the map file for the scene.
+     */
+    public static void init(Stage stage, String fileName, String CSVName) {
         Parent root = null;
         Map map = new Map("MazeMap.csv");
         Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.entryPos, map.exitPos);
         MapGUI gui = new MapGUI(map, path);
-        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource(fxmlName));
+        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource(fileName));
         try {
             root = loader.load();
         } catch (Exception ignored) {

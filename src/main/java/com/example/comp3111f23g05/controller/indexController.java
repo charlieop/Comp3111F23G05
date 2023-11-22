@@ -18,34 +18,64 @@ public class indexController {
     @FXML
     private Button startGame;
 
+    /**
+     * Event handler for the mouse clicked event on the map customization button.
+     *
+     * @param event The MouseEvent object representing the mouse click event.
+     */
     @FXML
     void mouseClickedMapCustomization(MouseEvent event) {
         AudioManager.getInstance().play(Sound.DONE, false);
         SceneManager.getInstance().toEditor();
     }
 
+    /**
+     * Event handler for the mouse clicked event on the shortest path button.
+     *
+     * @param event The MouseEvent object representing the mouse click event.
+     */
     @FXML
     void mouseClickedShortestPath(MouseEvent event) {
         AudioManager.getInstance().play(Sound.DONE, false);
         SceneManager.getInstance().toShortestPath();
     }
 
+    /**
+     * Event handler for the mouse clicked event on the start game button.
+     *
+     * @param event The MouseEvent object representing the mouse click event.
+     */
     @FXML
     void mouseClickedStartGame(MouseEvent event) {
         AudioManager.getInstance().play(Sound.DONE, false);
         SceneManager.getInstance().toGame();
     }
 
+    /**
+     * Event handler for the mouse entered event on the map customization button.
+     *
+     * @param event The MouseEvent object representing the mouse entered event.
+     */
     @FXML
     void mouseEnteredMapCustomization(MouseEvent event) {
         AudioManager.getInstance().play(Sound.BUTTON, false);
     }
 
+    /**
+     * Event handler for the mouse entered event on the shortest path button.
+     *
+     * @param event The MouseEvent object representing the mouse entered event.
+     */
     @FXML
     void mouseEnteredShortestPath(MouseEvent event) {
         AudioManager.getInstance().play(Sound.BUTTON, false);
     }
 
+    /**
+     * Event handler for the mouse entered event on the start game button.
+     *
+     * @param event The MouseEvent object representing the mouse entered event.
+     */
     @FXML
     void mouseEnteredStartGame(MouseEvent event) {
         AudioManager.getInstance().play(Sound.BUTTON, false);

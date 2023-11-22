@@ -17,7 +17,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ * The Game class provides functionality for the game scene in the maze game.
+ * It allows users to play the game.
+ */
+
 public class Game {
+
+    /**
+     * Initializes the map editor with the specified stage and file name.
+     *
+     * @param stage     The primary stage of the JavaFX application.
+     * @param fileName  The name of the FXML file for the scene.
+     */
     public static void init(Stage stage, String fileName) {
         AudioManager.getInstance().stop(Sound.THEME);
         AudioManager.getInstance().play(Sound.GAME,true);

@@ -1,20 +1,51 @@
 package com.example.comp3111f23g05.map;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.net.URL;
 
+/**
+ * The Map class represents the game map.
+ * It contains information about the size of the map, map data, entry and exit positions, and methods to load and save the map.
+ */
 public class Map {
+
+    /**
+     * The size of the map.
+     */
     public static final int MAP_SIZE = 30;
+
+    /**
+     * The map data, stored as a 2D array of blocks.
+     */
     private final Block[][] mapData;
+
+    /**
+     * The position of the entry block.
+     */
     public Coordinate entryPos;
+
+    /**
+     * The position of the exit block.
+     */
     public Coordinate exitPos;
 
+
+
+    /**
+     * Creates a new Map object with the specified file name.
+     *
+     * @param fileName The name of the file to load the map from.
+     */
     public Map(String fileName) {
         mapData = new Block[30][30];
         loadMap(fileName);
     }
 
+    /**
+     * Loads the map data from the specified file.
+     *
+     * @param fileName The name of the file to load the map from.
+     */
     private void loadMap(String fileName) {
         URL res = getClass().getClassLoader().getResource(fileName);
         try {
@@ -38,10 +69,22 @@ public class Map {
         }
     }
 
+    /**
+     * Returns the map data.
+     *
+     * @return The map data.
+     */
     public Block[][] getMap() {
         return mapData;
     }
 
+    /**
+     * Sets a block in the map based on the specified type, row, and column.
+     *
+     * @param type  The type of the block.
+     * @param row  The row of the block in the map.
+     * @param col  The column of the block in the map.
+     */
     private void setBlock(String type, int row, int col) {
         Block newBlock;
         switch (type.strip()) {
@@ -65,6 +108,12 @@ public class Map {
         mapData[row][col] = newBlock;
     }
 
+
+    /**
+     * Saves the map data to the specified file.
+     *
+     * @param fileName The name of the file to save the map to.
+     */
     public void saveMap(String fileName) {
         URL res = getClass().getClassLoader().getResource(fileName);
         String path = null;

@@ -12,12 +12,20 @@ import javafx.scene.input.KeyCode;
 
 import java.util.Arrays;
 
+/**
+ * The GameManager class manages the game logic and controls the game flow.
+ */
 public class GameManager {
     private static final GameManager instance = new GameManager();
 
     private GameManager() {
     }
 
+    /**
+     * Returns the singleton instance of the GameManager class.
+     *
+     * @return The instance of the GameManager class.
+     */
     public static GameManager getInstance() {
         return instance;
     }
@@ -35,6 +43,12 @@ public class GameManager {
     public final Refresh refresh = new Refresh();
     KeyCode lastInput = null;
 
+    /**
+     * Initializes the game with the specified root and map.
+     *
+     * @param root  The root parent node.
+     * @param map  The game map.
+     */
     public void init(Parent root, Map map) {
         this.map = map;
         Coordinate tomPos = new Coordinate(map.exitPos.x, map.exitPos.y);
@@ -67,6 +81,9 @@ public class GameManager {
         return new Coordinate(x + nextPosition[0], y+nextPosition[1]);
     }
 
+    /**
+     * The Refresh class extends AnimationTimer to handle the game refresh and update the game state.
+     */
     public class Refresh extends AnimationTimer {
         @Override
         public void handle(long now) {
@@ -109,7 +126,15 @@ public class GameManager {
         }
     }
 
-// return empty array if invalid or no path found
+
+    /**
+     * Calculates the shortest path from the start coordinate to the end coordinate on the given map.
+     *
+     * @param map   The map on which to calculate the shortest path.
+     * @param start The starting coordinate.
+     * @param end   The ending coordinate.
+     * @return An array of coordinates representing the shortest path from the start to the end. If no valid path is found, an empty array is returned.
+     */
     public Coordinate[] CalculateShortestPath(Map map, Coordinate start, Coordinate end) {
         //array to mark the min steps tp reach a position
         int[][] RecordMap = new int[Map.MAP_SIZE][Map.MAP_SIZE];
@@ -117,6 +142,16 @@ public class GameManager {
         return CalculateShortestPath(map, start, end, RecordMap, 0);
     }
 
+    /**
+     * Recursive helper method to calculate the shortest path from the start coordinate to the end coordinate on the given map.
+     *
+     * @param map       The map on which to calculate the shortest path.
+     * @param start     The starting coordinate.
+     * @param end       The ending coordinate.
+     * @param RecordMap The array to mark the minimum steps to reach each position.
+     * @param step      The current step count.
+     * @return An array of coordinates representing the shortest path from the start to the end. If no valid path is found, an empty array is returned.
+     */
     private Coordinate[] CalculateShortestPath(Map map, Coordinate start, Coordinate end, int[][] RecordMap, int step) {
         Coordinate[] path = new Coordinate[0];
         Block[][] mapData = map.getMap();

@@ -15,10 +15,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class GameOver {
-    public static void init(Stage stage, String fxmlName ,boolean isWinner) {
+
+    /**
+     * Initializes the map editor with the specified stage and file name.
+     *
+     * @param stage     The primary stage of the JavaFX application.
+     * @param fileName  The name of the FXML file for the scene.
+     * @param isWinner  Determine if the player wins.
+     */
+    public static void init(Stage stage, String fileName ,boolean isWinner) {
         AudioManager.getInstance().stop(Sound.GAME);
         AudioManager.getInstance().stop(Sound.THEME);
 
@@ -33,7 +39,7 @@ public class GameOver {
         Map map = new Map("MazeMap.csv");
         Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.entryPos, map.exitPos);
         MapGUI gui = new MapGUI(map, path);
-        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource(fxmlName));
+        FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource(fileName));
         try {
             root = loader.load();
         } catch (Exception ignored) {
