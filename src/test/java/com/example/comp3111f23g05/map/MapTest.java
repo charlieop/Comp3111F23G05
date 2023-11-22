@@ -1,12 +1,13 @@
 package com.example.comp3111f23g05.map;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.testfx.framework.junit.ApplicationTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class MapTest {
+public class MapTest extends ApplicationTest {
     @Test
-    void constructorAndLoadMapAndSetBlockTest() {
+    public void constructorAndLoadMapAndSetBlockTest() {
         // this is a constructor function that will call private functions to help load the map
         // it is possible to make all private methods it used as a part of code
         // the choice of making them as separated methods is for easier to understand
@@ -22,7 +23,7 @@ class MapTest {
     }
 
     @Test
-    void getMapTest() {
+    public void getMapTest() {
         Map myMap = new Map();
         Block[][] mapdata = myMap.getMap(); // target function
         assertEquals(30, mapdata.length);
@@ -30,7 +31,7 @@ class MapTest {
     }
 
     @Test
-    void saveMapTest() {
+    public void saveMapTest() {
         Map myMap = new Map();
         myMap.saveMap(); // target function
     }
