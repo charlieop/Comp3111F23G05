@@ -142,7 +142,7 @@ public class Editor {
                 warning.show();
                 return;
             }
-            curMap.saveMap();
+            curMap.saveMap("MazeMap.csv");
             SceneManager.getInstance().toIndex();
         });
     }

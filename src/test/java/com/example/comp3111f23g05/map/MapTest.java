@@ -33,7 +33,8 @@ class MapTest {
     @Test
     void saveMapTest() {
         Map myMap = new Map("MazeMap.csv");
-        myMap.saveMap(); // target function
+        myMap.saveMap("MazeMap.csv"); // target function
+        myMap.saveMap("");//target function
     }
 
 }

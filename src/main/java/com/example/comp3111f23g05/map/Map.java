@@ -63,8 +63,8 @@ public class Map {
         mapData[row][col] = newBlock;
     }
 
-    public void saveMap() {
-        URL res = getClass().getClassLoader().getResource("MazeMap.csv");
+    public void saveMap(String fileName) {
+        URL res = getClass().getClassLoader().getResource(fileName);
         String path = null;
         assert res != null;
         try {
@@ -79,7 +79,7 @@ public class Map {
                 writer.write(str);
                 writer.close();
             }
-        } catch (URISyntaxException | IOException ignored) {
+        } catch (Exception ignored) {
             System.out.println("There is an error in the saveMap");
             return;
         }
