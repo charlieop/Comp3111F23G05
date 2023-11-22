@@ -6,20 +6,27 @@
 
 This is the reop for COMP 3111 F23 project.  
 The project aims to build a maze chasing game using java.  
-The GUI is build using <ins> not yet decided </ins>. (Swing/ JavaFX/ HTML+CSS/ ...)
+The GUI is build using <ins> JavaFX </ins>.  
+The Unit Test uses <ins> JUnit-4 and TestFX </ins>.
 
 ## Work Distribution
 ![CHAN-A+D; LAM-C+D; YIP-B+D;](./work-distribution.jpg "Work Distribution")
 
 CHAN, Shu Pui (charlieop):
 - Function: A + D
-- UI
+- In-game UI
 
 LAM, Sum Ying (summyyyy):
 - Function: C + D
+- Index Page
 
 Yip, Sau Lai (slyipae1):
 - Function: B + D
+- Game Audio
+
+## UML Class Diagram
+
+![](./classDiagram.jpg "classDiagram.jpg")
 
 ## Useful Links
 
@@ -28,9 +35,8 @@ Here are the useful links:
 
 - [Class Diagram & Use Case Diagram](https://lucid.app/lucidchart/8d4aab76-8d94-4c77-8ee2-5f24908c90b4/edit?viewport_loc=-965%2C-459%2C1677%2C969%2C0_0&invitationId=inv_66e68831-7bf3-4743-9cbb-c6dfee4a3da1) (lucid.app)
 
-- [Progress](https://www.feishu.cn) (feishu.cn)
+- [Progress](https://github.com/users/charlieop/projects/2) (github project)
 
-- [Burndown Charts]() (null)
 
 
 
