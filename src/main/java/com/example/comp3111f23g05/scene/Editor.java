@@ -17,6 +17,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ * The Editor class provides functionality for the map editor in the maze game.
+ * It allows users to edit and save maps, clear the map, and return to the main menu.
+ */
 
 public class Editor {
     public static Map curMap;
@@ -28,6 +32,12 @@ public class Editor {
 
     private static boolean visited = false;
 
+    /**
+     * Initializes the map editor with the specified stage and file name.
+     *
+     * @param stage     The primary stage of the JavaFX application.
+     * @param fileName  The name of the FXML file for the editor scene.
+     */
     public static void init(Stage stage, String fileName) {
         Parent root = null;
         Map map = new Map();
@@ -71,6 +81,11 @@ public class Editor {
         }
     }
 
+    /**
+     * Handles the action when the "ClearMap" button is clicked.
+     *
+     * @param actionEvent The action event triggered by the button click.
+     */
     private static void clearMap (ActionEvent actionEvent) {
         //sound effect
         AudioManager.getInstance().play(Sound.ALERT, false);
@@ -98,6 +113,11 @@ public class Editor {
         });
     }
 
+    /**
+     * Handles the action when the "Return Home" button is clicked.
+     *
+     * @param actionEvent The action event triggered by the button click.
+     */
     private static void returnHome (ActionEvent actionEvent) {
         //sound effect
         AudioManager.getInstance().play(Sound.ALERT, false);
@@ -147,6 +167,11 @@ public class Editor {
         });
     }
 
+    /**
+     * Handles the action when the mouse is clicked on the game area.
+     *
+     * @param mouseEvent The mouse event triggered by the click.
+     */
     private static void handleMouseClicked (MouseEvent mouseEvent) {
         int x = (int)mouseEvent.getX() / SceneManager.BLOCK_SIZE;
         int y = (int)mouseEvent.getY() / SceneManager.BLOCK_SIZE;
@@ -174,6 +199,11 @@ public class Editor {
         }
     }
 
+    /**
+     * Handles the action when the mouse is dragged on the game area.
+     *
+     * @param mouseEvent The mouse event triggered by the drag.
+     */
     private static void handleMouseDragged (MouseEvent mouseEvent) {
         int x = (int)mouseEvent.getX() / SceneManager.BLOCK_SIZE;
         int y = (int)mouseEvent.getY() / SceneManager.BLOCK_SIZE;

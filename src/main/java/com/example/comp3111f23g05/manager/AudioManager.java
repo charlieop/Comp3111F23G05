@@ -1,20 +1,52 @@
 package com.example.comp3111f23g05.manager;
 
-import javax.sound.sampled.*;
-import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import java.net.URL;
 
+/**
+ * The AudioManager class manages the audio playback in the game.
+ * It uses the Java Sound API to play audio clips.
+ */
 public class AudioManager {
+
+    /**
+     * The maximum loop time for audio clips.
+     */
     private static final int MAX_LOOP_TIME = 20;
-    private Clip[] clips = new Clip[Sound.values().length]; //store the looping clip
+
+    /**
+     * An array of clips for each sound.
+     */
+    private Clip[] clips = new Clip[Sound.values().length];
+
+    /**
+     * The singleton instance of the AudioManager class.
+     */
     private static final AudioManager instance = new AudioManager();
 
+    /**
+     * Private constructor to prevent instantiation.
+     */
     private AudioManager() {}
+
+    /**
+     * Returns the singleton instance of the AudioManager class.
+     *
+     * @return The instance of the AudioManager class.
+     */
     public static AudioManager getInstance() {
         return instance;
     }
 
-
+    /**
+     * Plays the specified sound.
+     *
+     * @param sound  The sound to play.
+     * @param loop  Indicates whether the sound should be looped.
+     */
     public void play(Sound sound, boolean loop ){
         // multiple play() calls of bgm
         if(this.clips[sound.ordinal()] != null && this.clips[sound.ordinal()].isRunning() && loop){
@@ -43,13 +75,16 @@ public class AudioManager {
         }
     }
 
+    /**
+     * Stops the specified sound.
+     *
+     * @param sound  The sound to stop.
+     */
     public void stop(Sound sound){
         Clip clip = this.clips[sound.ordinal()];
         // stop if exist and is running
         if(clip != null && clip.isRunning()){
             clip.stop();
         }
-
     }
-
 }

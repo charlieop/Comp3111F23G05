@@ -10,24 +10,54 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.Random;
 
+/**
+ * The Block class represents a block in the game map.
+ * It contains information about the type and visual representation of the block.
+ */
 public class Block extends StackPane {
+
+    /**
+     * The type of the block.
+     */
     private BlockType type;
+
+    /**
+     * The base rectangle of the block.
+     */
     private final Rectangle base = new Rectangle(SceneManager.BLOCK_SIZE, SceneManager.BLOCK_SIZE);
 
+    /**
+     * Initializes the block with the specified type.
+     *
+     * @param type  The type of the block.
+     */
     public Block(BlockType type) {
         this.type = type;
         changeVisual();
     }
 
+    /**
+     * Returns the type of the block.
+     *
+     * @return The type of the block.
+     */
     public BlockType getType() {
         return type;
     }
 
+    /**
+     * Sets the type of the block.
+     *
+     * @param type  The type of the block.
+     */
     public void setType(BlockType type) {
         this.type = type;
         changeVisual();
     }
 
+    /**
+     * Changes the visual representation of the block based on its type.
+     */
     private void changeVisual() {
         getChildren().clear();
         getChildren().add(base);
@@ -70,6 +100,11 @@ public class Block extends StackPane {
         }
     }
 
+    /**
+     * Checks if the block is reachable.
+     *
+     * @return True if the block is reachable, false otherwise.
+     */
     public boolean reachable(){
         return !(type == BlockType.BARRIER || type == BlockType.BOUNDARY);
     }
