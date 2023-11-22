@@ -2,13 +2,11 @@ package com.example.comp3111f23g05.manager;
 
 import com.example.comp3111f23g05.map.Coordinate;
 import com.example.comp3111f23g05.map.Map;
-import org.junit.Test;
-import org.testfx.framework.junit.ApplicationTest;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.*;
+class CalculateShortestPathTest {
 
-public class CalculateShortestPathTest extends ApplicationTest {
-    GameManager gameManager = GameManager.getInstance();
 
     //Specification
     // There are two methods that are responsible to find the shortest path,
@@ -19,8 +17,10 @@ public class CalculateShortestPathTest extends ApplicationTest {
     // Since they are closely related and responsible for the same functionality, we test they as a whole
 
     @Test
-    public void SpecialTestCase() {
-        Map map = new Map();
+    void SpecialTestCase() {
+        Map map = new Map("MazeMap.csv");
+        GameManager gameManager = GameManager.getInstance();
+
         // all four are target functions
 
         //Boundary cases
@@ -37,8 +37,9 @@ public class CalculateShortestPathTest extends ApplicationTest {
     }
 
     @Test
-    public void TypicalTestCase() {
-        Map map = new Map();
+    void TypicalTestCase() {
+        Map map = new Map("MazeMap.csv");
+        GameManager gameManager = GameManager.getInstance();
 
         Coordinate[] randomPath1 = gameManager.CalculateShortestPath(map, new Coordinate(15, 7), new Coordinate(6, 16));
         assertEquals(19, randomPath1.length);
