@@ -25,6 +25,6 @@ public class MovablesTest {
         canvasTest.setWidth(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         canvasTest.setHeight(Map.MAP_SIZE * SceneManager.BLOCK_SIZE);
         GraphicsContext graphicsContextTest = canvasTest.getGraphicsContext2D();
-        jerryTest.paint(graphicsContextTest); // target functionwsa
+        jerryTest.paint(graphicsContextTest); // target functions
     }
 }
