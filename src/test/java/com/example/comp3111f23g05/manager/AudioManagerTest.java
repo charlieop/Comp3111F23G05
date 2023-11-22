@@ -6,12 +6,12 @@ class AudioManagerTest {
 
     AudioManager audioManager = AudioManager.getInstance();
     @Test
-    public void BGMTest() throws InterruptedException {
-        // bgm sound, with looping and stop
+    public void StopTest() throws InterruptedException {
+        // call stop() when haven't play a sound
+        audioManager.stop(Sound.GAME); //target function
 
-        audioManager.play(Sound.THEME, true); //target function
-        // multiple calls of play() on the same sound
-        audioManager.play(Sound.THEME, true); //target function
+        // bgm sound, with looping and stop
+        audioManager.play(Sound.THEME, true);
         Thread.sleep(1000);
         audioManager.stop(Sound.THEME); //target function
         Thread.sleep(1000);
@@ -20,18 +20,20 @@ class AudioManagerTest {
     }
 
     @Test
-    public  void SpecialTestCase(){
-        // call stop() when haven't play a sound
-        audioManager.stop(Sound.GAME); //target function
-        // invalid url
-        audioManager.play(Sound.INVALID_TEST, false); //target function
-    }
+    public  void PlayTest()throws InterruptedException{
+        // bgm sound, with looping
+        audioManager.play(Sound.THEME, true);//target function
+        Thread.sleep(1000);
+        // multiple calls of play() on the same sound
+        audioManager.play(Sound.THEME, true);//target function
+        Thread.sleep(1000);
 
-    @Test
-    public  void instantTest(){
         // instant sound effect
         audioManager.play(Sound.BUTTON, false); //target function
-        audioManager.play(Sound.JERRY, false); //target function
+        Thread.sleep(300);
+        
+        // invalid url
+        audioManager.play(Sound.INVALID_TEST, false); //target function
 
     }
 

@@ -16,11 +16,26 @@ public class gameAreaControllerTest extends ApplicationTest {
         SceneManager.getInstance().init(stage);
     }
     @Test
-    public void accessorTest(){
+    public void accessorTest1(){
         gameAreaController controller = new gameAreaController();
         controller.getBackground(); // target function
+    }
+
+    @Test
+    public void accessorTest2(){
+        gameAreaController controller = new gameAreaController();
         controller.getMapArea(); // target function
+    }
+
+    @Test
+    public void accessorTest3(){
+        gameAreaController controller = new gameAreaController();
         controller.getFunctionalButton(); // target function
+    }
+
+    @Test
+    public void accessorTest4(){
+        gameAreaController controller = new gameAreaController();
         controller.getReturnHomeButton(); // target function
     }
 
