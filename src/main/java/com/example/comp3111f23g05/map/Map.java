@@ -30,21 +30,19 @@ public class Map {
      */
     public Coordinate exitPos;
 
-    /**
-     * Initializes the map and loads the map data from a file.
-     */
-    public Map() {
+
+
+    public Map(String fileName) {
         mapData = new Block[30][30];
-        loadMap();
+        loadMap(fileName);
     }
 
-    /**
-     * Loads the map data from a file.
-     */
-    private void loadMap() {
-        URL res = getClass().getClassLoader().getResource("MazeMap.csv");
+    private void loadMap(String fileName) {
+        URL res = getClass().getClassLoader().getResource(fileName);
         try {
-            assert res != null;
+            if (res == null) {
+                throw new RuntimeException("file not found");
+            }
             BufferedReader reader = new BufferedReader(new InputStreamReader(res.openStream()));
             String row;
             int rowNum = 0;
@@ -56,7 +54,7 @@ public class Map {
                 }
                 rowNum++;
             }
-        } catch (IOException ignored) {
+        } catch (Exception ignored) {
             System.out.println("There is an error in the loadMap");
             return;
         }
@@ -101,14 +99,14 @@ public class Map {
         mapData[row][col] = newBlock;
     }
 
-    /**
-     * Saves the map data to a file.
-     */
-    public void saveMap() {
-        URL res = getClass().getClassLoader().getResource("MazeMap.csv");
+
+    public void saveMap(String fileName) {
+        URL res = getClass().getClassLoader().getResource(fileName);
         String path = null;
-        assert res != null;
         try {
+            if (res == null) {
+                throw new RuntimeException("file not found");
+            }
             path = new File(res.toURI()).getAbsolutePath();
             String str = "";
             for (Block[] row : mapData) {
@@ -120,7 +118,7 @@ public class Map {
                 writer.write(str);
                 writer.close();
             }
-        } catch (URISyntaxException | IOException ignored) {
+        } catch (Exception ignored) {
             System.out.println("There is an error in the saveMap");
             return;
         }

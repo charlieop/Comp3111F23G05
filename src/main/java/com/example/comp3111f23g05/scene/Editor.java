@@ -40,7 +40,7 @@ public class Editor {
      */
     public static void init(Stage stage, String fileName) {
         Parent root = null;
-        Map map = new Map();
+        Map map = new Map("MazeMap.csv");
         curMap = map;
         MapGUI gui = new MapGUI(map, new Coordinate[0]);
         FXMLLoader loader = new FXMLLoader(Editor.class.getResource(fileName));
@@ -162,7 +162,7 @@ public class Editor {
                 warning.show();
                 return;
             }
-            curMap.saveMap();
+            curMap.saveMap("MazeMap.csv");
             SceneManager.getInstance().toIndex();
         });
     }

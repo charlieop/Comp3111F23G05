@@ -31,7 +31,7 @@ public class ShortestPath {
      */
     public static void init(Stage stage, String fileName, String CSVName) {
         Parent root = null;
-        Map map = new Map();
+        Map map = new Map("MazeMap.csv");
         Coordinate[] path = GameManager.getInstance().CalculateShortestPath(map, map.entryPos, map.exitPos);
         MapGUI gui = new MapGUI(map, path);
         FXMLLoader loader = new FXMLLoader(ShortestPath.class.getResource(fileName));

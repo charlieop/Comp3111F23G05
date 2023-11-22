@@ -34,7 +34,7 @@ public class Game {
         AudioManager.getInstance().stop(Sound.THEME);
         AudioManager.getInstance().play(Sound.GAME,true);
         Parent root = null;
-        Map map = new Map();
+        Map map = new Map("MazeMap.csv");
         MapGUI gui = new MapGUI(map, new Coordinate[0]);
         FXMLLoader loader = new FXMLLoader(Game.class.getResource(fileName));
         try {
